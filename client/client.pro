@@ -13,3 +13,6 @@ SOURCES  += main.cpp \
 
 HEADERS  += \
     key_logger.h
+
+win32:DEFINES  += WIN32
+unix:DEFINES   += UNIX
