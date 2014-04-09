@@ -22,3 +22,7 @@
 
 # User data
 *.pro.user
+
+# build paths
+debug/
+release/

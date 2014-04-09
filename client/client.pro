@@ -1,18 +1,15 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2014-04-01T11:56:34
-#
-#-------------------------------------------------
-
 QT       += core
-
 QT       -= gui
 
-TARGET = client
+TARGET   = client
+TEMPLATE = app
+
 CONFIG   += console
 CONFIG   -= app_bundle
 
-TEMPLATE = app
 
+SOURCES  += main.cpp \
+    key_logger_windows.cpp
 
-SOURCES += main.cpp
+HEADERS  += \
+    key_logger.h
