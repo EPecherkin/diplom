@@ -21,8 +21,7 @@
 *.app
 
 # User data
-*.pro.user
+*.pro.user*
 
 # build paths
-debug/
-release/
+build/
