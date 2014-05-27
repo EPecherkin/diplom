@@ -4,8 +4,6 @@
 #include "qjsonrpctcpserver.h"
 #include "service.h"
 
-void network();
-
 int main(int argc, char* argv[]) {
   QCoreApplication a(argc, argv);
 

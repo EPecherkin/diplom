@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     qjsonrpc \
     client \
-    server
+    server \
+    model
