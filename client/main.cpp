@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   qDebug() << "starting";
   QTcpSocket socket;
   qDebug() << "Try to connect";
-  socket.connectToHost("localhost", 3000);
+  socket.connectToHost("127.0.0.1", 3000);
   if (!socket.waitForConnected()) {
       qDebug() << "couldn't connect to local server: " << socket.errorString();
       return -1;

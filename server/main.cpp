@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
   QJsonRpcTcpServer rpcServer;
   qDebug() << "Try to start service";
   rpcServer.addService(new Service);
-  if (!rpcServer.listen(QHostAddress("localhost"), 30000)) {
+  if (!rpcServer.listen(QHostAddress("127.0.0.1"), 3000)) {
     qDebug() << "can't start local server: " << rpcServer.errorString();
     return -1;
   }
