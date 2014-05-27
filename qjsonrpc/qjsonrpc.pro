@@ -1,4 +1,4 @@
-include(./qjsonrpc.pri)
+include(qjsonrpc.pri)
 
 INCLUDEPATH += .
 TEMPLATE = lib

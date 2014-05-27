@@ -20,9 +20,11 @@ HEADERS  += \
 win32:DEFINES  += WIN32
 unix:DEFINES   += UNIX
 
+DEFINES = QJSONRPC_SHARED
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/release/ -lqjsonrpc
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/debug/ -lqjsonrpc
-else:unix: LIBS += -L$$OUT_PWD/../qjsonrpc/ -lqjsonrpc
+else:unix: LIBS += -L$$OUT_PWD/../qjsonrpc/ -lqjsonrpc1
 
 INCLUDEPATH += $$PWD/../qjsonrpc
 DEPENDPATH += $$PWD/../qjsonrpc

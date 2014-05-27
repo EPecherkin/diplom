@@ -1,8 +1,9 @@
 #include "service.h"
+#include <QTime>
 
 Service::Service(QObject* parent) :  QJsonRpcService(parent) {
 }
 
-Service::currentTime() {
+QString Service::currentTime() {
   return QTime::currentTime().toString();
 }
