@@ -1,5 +1,6 @@
 #include "rpcservice.h"
 #include <QTime>
+#include <QDebug>
 
 RpcService::RpcService(QObject* parent) :  QJsonRpcService(parent) {
 }

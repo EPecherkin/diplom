@@ -1,4 +1,4 @@
-QT       += core network
+QT       += core network sql
 QT       -= gui
 
 TARGET   = server
@@ -8,11 +8,11 @@ CONFIG   += console
 CONFIG   -= app_bundle
 
 SOURCES  += *.cpp
-HEADERS += *.h
+HEADERS  += *.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/release/ -lqjsonrpc
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/debug/ -lqjsonrpc
-else:unix: LIBS += -L$$OUT_PWD/../qjsonrpc/ -lqjsonrpc
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1d
+else:unix: LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1
 
-INCLUDEPATH += $$PWD/../qjsonrpc
-DEPENDPATH += $$PWD/../qjsonrpc
+INCLUDEPATH += $$PWD/../lib/qjsonrpc
+DEPENDPATH  += $$PWD/../lib/qjsonrpc
