@@ -11,7 +11,7 @@ contains(QJSONRPC_LIBRARY_TYPE, staticlib) {
     DEFINES += QJSONRPC_STATIC
 } else {
     DEFINES += QJSONRPC_SHARED
-    win32:QJSONRPC_LIBS = -lqjsonrpc
+    win32:QJSONRPC_LIBS = -lqjsonrpc1
 }
 
 isEmpty(PREFIX) {

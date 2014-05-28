@@ -1,5 +1,5 @@
 #ifdef WIN32
-#include "key_logger.h"
+#include "keylogger.h"
 
 #include <QTextStream>
 #include <QString>

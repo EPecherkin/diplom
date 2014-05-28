@@ -8,10 +8,6 @@ class Server : public QObject {
 public:
   explicit Server(QObject *parent = 0);
 
-signals:
-
-public slots:
-
 };
 
 #endif // SERVER_H
