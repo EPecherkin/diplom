@@ -10,8 +10,8 @@ CONFIG   -= app_bundle
 SOURCES  += *.cpp
 HEADERS  += *.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1d
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/r/ -lqjsonrpc1
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/qjsonrpc/d/ -lqjsonrpc1
 else:unix: LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1
 
 INCLUDEPATH += $$PWD/../lib/qjsonrpc
