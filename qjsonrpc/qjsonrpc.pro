@@ -1,4 +1,29 @@
-include(qjsonrpc.pri)
+QJSONRPC_VERSION = 1.0.99
+
+isEmpty(QJSONRPC_LIBRARY_TYPE) {
+    QJSONRPC_LIBRARY_TYPE = shared
+}
+
+QT += network
+QJSONRPC_INCLUDEPATH = $${PWD}
+QJSONRPC_LIBS = -lqjsonrpc
+contains(QJSONRPC_LIBRARY_TYPE, staticlib) {
+    DEFINES += QJSONRPC_STATIC
+} else {
+    DEFINES += QJSONRPC_SHARED
+    win32:QJSONRPC_LIBS = -lqjsonrpc
+}
+
+isEmpty(PREFIX) {
+    unix {
+        PREFIX = /usr
+    } else {
+        PREFIX = $$[QT_INSTALL_PREFIX]
+    }
+}
+isEmpty(LIBDIR) {
+    LIBDIR = lib
+}
 
 INCLUDEPATH += .
 TEMPLATE = lib

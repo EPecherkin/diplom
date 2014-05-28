@@ -7,15 +7,8 @@ TEMPLATE = app
 CONFIG   += console
 CONFIG   -= app_bundle
 
-
-SOURCES  += main.cpp \
-    key_logger_windows.cpp \
-    key_logger_unix.cpp \
-    server.cpp
-
-HEADERS  += \
-    key_logger.h \
-    server.h
+SOURCES  += *.cpp
+HEADERS  += *.h
 
 win32:DEFINES  += WIN32
 unix:DEFINES   += UNIX

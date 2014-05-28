@@ -5,12 +5,9 @@
 #include "qjsonrpcsocket.h"
 #include "qjsonrpcservicereply.h"
 #include "key_logger.h"
-#include "model_user.h"
 
 int main(int argc, char* argv[]) {
   QCoreApplication a(argc, argv);
-
-  ModelUser user;
 
   return a.exec();
 }

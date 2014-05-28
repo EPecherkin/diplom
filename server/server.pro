@@ -7,12 +7,8 @@ TEMPLATE = app
 CONFIG   += console
 CONFIG   -= app_bundle
 
-
-SOURCES  += main.cpp \
-    service.cpp
-
-HEADERS += \
-    service.h
+SOURCES  += *.cpp
+HEADERS += *.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/release/ -lqjsonrpc
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qjsonrpc/debug/ -lqjsonrpc
