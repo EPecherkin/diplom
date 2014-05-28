@@ -8,23 +8,6 @@
 int main(int argc, char* argv[]) {
   QCoreApplication a(argc, argv);
 
-  qDebug() << "starting";
-  QTcpSocket socket;
-  qDebug() << "Try to connect";
-  socket.connectToHost("localhost", 3000);
-  if (!socket.waitForConnected()) {
-      qDebug() << "couldn't connect to local server: " << socket.errorString();
-      return -1;
-  }
-  qDebug() << "connected";
-  QEventLoop loop;
-  QJsonRpcServiceSocket service(&socket);
-  QJsonRpcServiceReply *reply = service.invokeRemoteMethod("rpc_service.currentTime");
-  QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-  qDebug() << "loop";
-  loop.exec();
-  qDebug() << "response: " << reply->response();
-
   return a.exec();
 }
 

@@ -16,3 +16,10 @@ else:unix: LIBS += -L$$PWD/../lib/qjsonrpc/ -lqjsonrpc1
 
 INCLUDEPATH += $$PWD/../lib/qjsonrpc
 DEPENDPATH  += $$PWD/../lib/qjsonrpc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../model/release/ -lmodel
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../model/debug/ -lmodel
+else:unix: LIBS += -L$$OUT_PWD/../model/ -lmodel
+
+INCLUDEPATH += $$PWD/../model
+DEPENDPATH  += $$PWD/../model
