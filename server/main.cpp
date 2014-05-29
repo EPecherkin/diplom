@@ -3,26 +3,33 @@
 #include "qjsonrpcservice.h"
 #include "qjsonrpctcpserver.h"
 #include "rpcservice.h"
-#include "modeluser.h"
+#include "user.h"
+
+void network();
+void model();
 
 int main(int argc, char* argv[]) {
   QCoreApplication a(argc, argv);
 
-  qDebug() << "starting";
-  ModelUser u;
-  qDebug() << "started";
+  network();
 
   return a.exec();
 }
 
-int network() {
+void network() {
   qDebug() << "starting";
-  QJsonRpcTcpServer rpcServer;
+  QJsonRpcTcpServer* rpcServer = new QJsonRpcTcpServer;
   qDebug() << "Try to start service";
-  rpcServer.addService(new RpcService);
-  if (!rpcServer.listen(QHostAddress("localhost"), 30000)) {
-    qDebug() << "can't start local server: " << rpcServer.errorString();
-    return -1;
+  rpcServer->addService(new RpcService);
+  if (!rpcServer->listen(QHostAddress("127.0.0.1"), 3023)) {
+    qDebug() << "can't start local server: " << rpcServer->errorString();
+    return;
   }
   qDebug() << "service started";
+}
+
+void model() {
+  qDebug() << "starting";
+  User u;
+  qDebug() << "started";
 }
