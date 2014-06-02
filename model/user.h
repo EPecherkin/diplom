@@ -9,7 +9,6 @@
 class MODEL_EXPORT User : public QDjangoModel {
   Q_OBJECT
 
-  Q_PROPERTY(qint32 id READ id WRITE id)
   Q_PROPERTY(QString login READ login WRITE login)
   Q_PROPERTY(QString firstName READ firstName WRITE firstName)
   Q_PROPERTY(QString lastName READ lastName WRITE lastName)
@@ -18,9 +17,6 @@ class MODEL_EXPORT User : public QDjangoModel {
 
 public:
   explicit User(QObject * parent = 0);
-
-  qint32 id() const;
-  void id(const qint32&);
 
   QString login() const;
   void login(const QString&);
@@ -38,7 +34,6 @@ public:
   void password(const QString&);
 
 private:
-  qint32 _id;
   QString _login;
   QString _firstName;
   QString _lastName;

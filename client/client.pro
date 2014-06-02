@@ -1,5 +1,5 @@
-QT       += core network sql
-QT       -= gui
+QT       += core gui network sql
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET   = client
 TEMPLATE = app
@@ -9,6 +9,7 @@ CONFIG   -= app_bundle
 
 SOURCES  += *.cpp
 HEADERS  += *.h
+FORMS    += *.ui
 
 win32:DEFINES  += WIN32
 unix:DEFINES   += UNIX

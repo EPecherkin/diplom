@@ -1,14 +1,12 @@
-QT       += core network sql
-QT       -= gui
+QT       += core gui network sql
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET   = server
 TEMPLATE = app
 
-CONFIG   += console
-CONFIG   -= app_bundle
-
 SOURCES  += *.cpp
 HEADERS  += *.h
+FORMS    += *.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/qdjango/r/ -lqdjango-db0
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/qdjango/d/ -lqdjango-db0

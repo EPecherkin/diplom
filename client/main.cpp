@@ -1,12 +1,14 @@
 #include <QCoreApplication>
-#include <QtNetwork/QTcpSocket>
 #include <QDebug>
+#include <QtNetwork/QTcpSocket>
 #include "qjsonrpcservice.h"
 #include "qjsonrpcsocket.h"
 #include "qjsonrpcservicereply.h"
-#include "user.h"
 #include "keylogger.h"
+#include "user.h"
+#include "logindialog.h"
 
+void gui();
 void logs();
 void network();
 void model();
@@ -17,6 +19,21 @@ int main(int argc, char* argv[]) {
   network();
 
   return a.exec();
+}
+
+void gui() {
+  LoginDialog l;
+  l.show();
+
+  QEventLoop loop;
+  QObject::connect(&l, SIGNAL(finished(int)), &loop, SLOT(quit()));
+  loop.exec();
+
+  if(l.result() == QDialog::Rejected)
+    return;
+
+//  MainWindow* w = new MainWindow;
+//  w->show();
 }
 
 void logs() {
@@ -33,7 +50,7 @@ void network() {
   QTcpSocket* socket = new QTcpSocket;
   qDebug() << "Try to connect";
   socket->connectToHost("127.0.0.1", 3023);
-  if (!socket->waitForConnected()) {
+  if(!socket->waitForConnected()) {
       qDebug() << "couldn't connect to local server: " << socket->errorString();
       return;
   }

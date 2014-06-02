@@ -7,6 +7,7 @@
 class RpcService : public QJsonRpcService  {
   Q_OBJECT
   Q_CLASSINFO("serviceName", "rpc_service")
+
 public:
   explicit RpcService(QObject* parent = 0);
 

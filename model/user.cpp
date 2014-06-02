@@ -3,14 +3,6 @@
 User::User(QObject* parent) : QDjangoModel(parent) {
 }
 
-qint32 User::id() const {
-  return _id;
-}
-
-void User::id(const qint32& _id) {
-  this->_id = _id;
-}
-
 QString User::login() const {
   return _login;
 }
