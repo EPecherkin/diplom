@@ -8,6 +8,10 @@
 #include "user.h"
 #include "keypress.h"
 #include "QDjango.h"
+#include "QDjangoQuerySet.h"
+#include <QVariant>
+#include <QString>
+#include <QStringList>
 
 void gui();
 void network();
@@ -17,7 +21,7 @@ int main(int argc, char* argv[]) {
 //  QCoreApplication a(argc, argv);
   QApplication a(argc, argv);
 
-  gui();
+  model();
 
   return a.exec();
 }
@@ -73,6 +77,41 @@ void model() {
     qDebug() << "failed";
     return;
   }
+
+  qDebug() << "save user";
+  User u;
+  u.login("11");
+  u.firstName("12");
+  u.lastName("22");
+  u.middleName("33");
+  u.password("334");
+  if(u.save()) {
+    qDebug() << "success";
+  } else {
+    qDebug() << "fail";
+    return;
+  }
+
+  qDebug() << "save keypress";
+  KeyPress kp;
+  QStringList keys;
+  keys.append("1");
+  keys.append("2");
+  kp.keys(keys);
+  kp.start(QDateTime::currentDateTime());
+  kp.duration(10);
+  kp.user(&u);
+  if(kp.save()) {
+    qDebug() << "success";
+  } else {
+    qDebug() << "fail";
+    return;
+  }
+
+  QDjangoQuerySet<KeyPress> kps;
+  KeyPress* nkp = kps.get(QDjangoWhere("pk", QDjangoWhere::Equals, 1));
+  QStringList nkeys = nkp->keys();
+  nkeys.count();
 
   qDebug() << "end model";
 }

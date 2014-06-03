@@ -11,20 +11,32 @@ void KeyPress::start(const QDateTime& _start) {
   this->_start = _start;
 }
 
-QDateTime KeyPress::duration() const {
+qint64 KeyPress::duration() const {
   return _duration;
 }
 
-void KeyPress::duration(const QDateTime& _duration) {
+void KeyPress::duration(const qint64& _duration) {
   this->_duration = _duration;
 }
 
-QList<QString> KeyPress::keys() const {
-  return _keys;
+QStringList KeyPress::keys() {
+  QStringList result;
+  QDataStream in(&_ser_keys, QIODevice::ReadOnly);
+  in >> result;
+  return result;
 }
 
-void KeyPress::keys(const QList<QString>& _keys) {
-  this->_keys = _keys;
+void KeyPress::keys(QStringList& _keys) {
+  QDataStream out(&_ser_keys, QIODevice::WriteOnly);
+  out << _keys;
+}
+
+QByteArray KeyPress::ser_keys() const {
+  return _ser_keys;
+}
+
+void KeyPress::ser_keys(const QByteArray& _ser_keys) {
+  this->_ser_keys = _ser_keys;
 }
 
 User* KeyPress::user() const {

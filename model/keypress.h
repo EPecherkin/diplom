@@ -5,7 +5,8 @@
 #include <QObject>
 #include <QString>
 #include <QDateTime>
-#include <QList>
+#include <QStringList>
+#include <QByteArray>
 #include "QDjangoModel.h"
 #include "user.h"
 
@@ -13,9 +14,12 @@ class MODEL_EXPORT KeyPress : public QDjangoModel {
   Q_OBJECT
 
   Q_PROPERTY(QDateTime start READ start WRITE start)
-  Q_PROPERTY(QDateTime duration READ duration WRITE duration)
-  Q_PROPERTY(QList<QString> keys READ keys WRITE keys)
+  Q_PROPERTY(qint64 duration READ duration WRITE duration)
+  Q_PROPERTY(QStringList keys READ keys WRITE keys)
+  Q_PROPERTY(QByteArray ser_keys READ ser_keys WRITE ser_keys)
   Q_PROPERTY(User* user READ user WRITE user)
+
+  Q_CLASSINFO("keys", "ignore_field=true")
 
 public:
   explicit KeyPress(QObject * parent = 0);
@@ -23,19 +27,22 @@ public:
   QDateTime start() const;
   void start(const QDateTime&);
 
-  QDateTime duration() const;
-  void duration(const QDateTime&);
+  qint64 duration() const;
+  void duration(const qint64&);
 
-  QList<QString> keys() const;
-  void keys(const QList<QString>&);
+  QStringList keys();
+  void keys(QStringList&);
+
+  QByteArray ser_keys() const;
+  void ser_keys(const QByteArray&);
 
   User* user() const;
   void user(User*);
 
 private:
   QDateTime _start;
-  QDateTime _duration;
-  QList<QString> _keys;
+  qint64 _duration;
+  QByteArray _ser_keys;
 
 };
 
