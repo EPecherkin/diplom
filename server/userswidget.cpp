@@ -24,3 +24,8 @@ void UsersWidget::on_usersTW_doubleClicked(const QModelIndex& index) {
   UserEditDialog* ued = new UserEditDialog;
   ued->show();
 }
+
+void UsersWidget::on_addPB_clicked() {
+  UserEditDialog* ued = new UserEditDialog;
+  ued->show();
+}

@@ -14,6 +14,9 @@ public:
   explicit GroupEditDialog(QWidget* parent = 0);
   ~GroupEditDialog();
 
+private slots:
+  void on_usersPB_clicked();
+
 private:
   Ui::GroupEditDialog* ui;
 

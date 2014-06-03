@@ -15,7 +15,8 @@ public:
   ~UsersWidget();
 
 private slots:
-  void on_usersTW_doubleClicked(const QModelIndex& index);
+  void on_usersTW_doubleClicked(const QModelIndex&);
+  void on_addPB_clicked();
 
 private:
   Ui::UsersWidget* ui;

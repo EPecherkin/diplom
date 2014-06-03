@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>ComputersWidget</class>
- <widget name="ComputersWidget" class="QWidget">
+ <widget class="QWidget" name="ComputersWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +13,26 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableWidget" name="computersTW">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <column>
+      <property name="text">
+       <string>IP</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Last activity</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>LoginDialog</class>
- <widget class="QWidget" name="LoginDialog">
+ <widget class="QDialog" name="LoginDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>216</width>
-    <height>185</height>
+    <width>218</width>
+    <height>170</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="loginPB">
+  <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>30</x>
      <y>130</y>
-     <width>75</width>
-     <height>23</height>
+     <width>171</width>
+     <height>32</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Login</string>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
-  </widget>
-  <widget class="QPushButton" name="exitPB">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>130</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
-   <property name="text">
-    <string>Exit</string>
+   <property name="centerButtons">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="adressL">
@@ -52,21 +45,47 @@
     <string>Adress</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="adressLE">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>10</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="portLE">
    <property name="geometry">
     <rect>
      <x>90</x>
      <y>40</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="loginL">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>46</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passwordL">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>46</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="adressLE">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>10</y>
      <width>113</width>
      <height>20</height>
     </rect>
@@ -95,19 +114,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="loginL">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>46</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Login</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="passwordLE">
    <property name="geometry">
     <rect>
@@ -118,33 +124,40 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="passwordL">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>46</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Password</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="statusL">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>170</y>
-     <width>191</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>LoginDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>LoginDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

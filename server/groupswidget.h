@@ -14,6 +14,10 @@ public:
   explicit GroupsWidget(QWidget* parent = 0);
   ~GroupsWidget();
 
+private slots:
+  void on_groupsTW_doubleClicked(const QModelIndex&);
+  void on_addPB_clicked();
+
 private:
   Ui::GroupsWidget* ui;
 

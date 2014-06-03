@@ -1,4 +1,5 @@
-#include <QCoreApplication>
+//#include <QCoreApplication>
+#include <QApplication>
 #include <QDebug>
 #include <QtNetwork/QTcpSocket>
 #include "qjsonrpcservice.h"
@@ -14,26 +15,17 @@ void network();
 void model();
 
 int main(int argc, char* argv[]) {
-  QCoreApplication a(argc, argv);
+  //  QCoreApplication a(argc, argv);
+  QApplication a(argc, argv);
 
-  network();
+  gui();
 
   return a.exec();
 }
 
 void gui() {
   LoginDialog l;
-  l.show();
-
-  QEventLoop loop;
-  QObject::connect(&l, SIGNAL(finished(int)), &loop, SLOT(quit()));
-  loop.exec();
-
-  if(l.result() == QDialog::Rejected)
-    return;
-
-//  MainWindow* w = new MainWindow;
-//  w->show();
+  l.exec();
 }
 
 void logs() {
