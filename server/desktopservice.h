@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QSystemTrayIcon>
 #include "gui/mainwindow.h"
+#include "qjsonrpctcpserver.h"
 
 class DesktopService : public QObject {
   Q_OBJECT
@@ -20,8 +21,11 @@ private slots:
 
 private:
   QApplication* _application;
-  MainWindow* _mainWindow;
   QSystemTrayIcon* _icon;
+  MainWindow* _mainWindow;
+  QJsonRpcTcpServer* _rpcServer;
+
+  bool startRpcSerivce();
 
 };
 

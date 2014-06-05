@@ -2,12 +2,19 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QAction>
+#include "qjsonrpcservice.h"
 #include "gui/mainwindow.h"
+#include "rpcservice.h"
 
 DesktopService::DesktopService(QApplication& _application, QObject* parent) : QObject(parent), _application(&_application) {
 }
 
 void DesktopService::start() {
+  if(!startRpcSerivce()) {
+    trayIconContextQuitPressed();
+    return;
+  }
+
   _application->setQuitOnLastWindowClosed(false);
 
   _icon = new QSystemTrayIcon(QIcon(":/icon.png"), this);
@@ -43,4 +50,16 @@ void DesktopService::trayIconPressed(QSystemTrayIcon::ActivationReason _activati
 void DesktopService::trayIconContextQuitPressed() {
   _icon->hide();
   _application->quit();
+}
+
+bool DesktopService::startRpcSerivce() {
+  _rpcServer = new QJsonRpcTcpServer;
+  qDebug() << __FUNCTION__  << "try to start service";
+  _rpcServer->addService(new RpcService);
+  if(!_rpcServer->listen(QHostAddress("127.0.0.1"), 3023)) {
+    qDebug() << __FUNCTION__  << "can't start local service: " << _rpcServer->errorString();
+    return false;
+  }
+  qDebug() << __FUNCTION__  << "service started";
+  return true;
 }

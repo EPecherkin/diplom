@@ -2,8 +2,6 @@
 #include <QDebug>
 #include "desktopservice.h"
 
-void gui();
-void network();
 void model();
 
 int main(int argc, char* argv[]) {
@@ -15,10 +13,6 @@ int main(int argc, char* argv[]) {
   return a.exec();
 }
 
-#include "gui/mainwindow.h"
-#include "qjsonrpcservice.h"
-#include "qjsonrpctcpserver.h"
-#include "rpcservice.h"
 #include "user.h"
 #include "keypress.h"
 #include "QDjango.h"
@@ -26,25 +20,6 @@ int main(int argc, char* argv[]) {
 #include <QVariant>
 #include <QString>
 #include <QStringList>
-
-void gui() {
-  MainWindow* w = new MainWindow;
-  w->show();
-}
-
-void network() {
-  qDebug() << "network";
-
-  QJsonRpcTcpServer* rpcServer = new QJsonRpcTcpServer;
-  qDebug() << "Try to start service";
-  rpcServer->addService(new RpcService);
-  if(!rpcServer->listen(QHostAddress("127.0.0.1"), 3023)) {
-    qDebug() << "can't start local server: " << rpcServer->errorString();
-    return;
-  }
-
-  qDebug() << "end network";
-}
 
 void model() {
   qDebug() << "model";
