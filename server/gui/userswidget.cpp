@@ -1,5 +1,6 @@
 #include "userswidget.h"
 #include "ui_userswidget.h"
+#include "macros.h"
 #include "usereditdialog.h"
 
 UsersWidget::UsersWidget(QWidget* parent) : QWidget(parent), ui(new Ui::UsersWidget) {
@@ -21,11 +22,13 @@ UsersWidget::~UsersWidget() {
 }
 
 void UsersWidget::on_usersTW_doubleClicked(const QModelIndex& index) {
+  FUNCTION
   UserEditDialog* ued = new UserEditDialog;
   ued->show();
 }
 
 void UsersWidget::on_addPB_clicked() {
+  FUNCTION
   UserEditDialog* ued = new UserEditDialog;
   ued->show();
 }

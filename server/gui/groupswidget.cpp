@@ -1,6 +1,7 @@
 #include "groupswidget.h"
 #include "ui_groupswidget.h"
 #include "groupeditdialog.h"
+#include "macros.h"
 
 GroupsWidget::GroupsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GroupsWidget) {
   ui->setupUi(this);
@@ -19,11 +20,13 @@ GroupsWidget::~GroupsWidget() {
 }
 
 void GroupsWidget::on_groupsTW_doubleClicked(const QModelIndex& index) {
+  FUNCTION
   GroupEditDialog* ged = new GroupEditDialog;
   ged->show();
 }
 
 void GroupsWidget::on_addPB_clicked() {
+  FUNCTION
   GroupEditDialog* ged = new GroupEditDialog;
   ged->show();
 }

@@ -25,7 +25,8 @@ private:
   MainWindow* _mainWindow;
   QJsonRpcTcpServer* _rpcServer;
 
-  bool startRpcSerivce();
+  bool initDB();
+  bool startRpcServer();
 
 };
 

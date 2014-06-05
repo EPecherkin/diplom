@@ -18,6 +18,7 @@ SOURCES += \
     gui/usereditdialog.cpp \
     gui/userswidget.cpp
 HEADERS += \
+    macros.h \
     desktopservice.h \
     rpcservice.h \
     gui/computerswidget.h \

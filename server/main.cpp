@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <QDebug>
 #include "desktopservice.h"
 
 void model();
@@ -15,6 +14,7 @@ int main(int argc, char* argv[]) {
 
 #include "user.h"
 #include "keypress.h"
+#include <QDebug>
 #include "QDjango.h"
 #include "QDjangoQuerySet.h"
 #include <QVariant>
