@@ -1,4 +1,3 @@
-//#include <QCoreApplication>
 #include <QApplication>
 #include <QDebug>
 #include <QtNetwork/QTcpSocket>
@@ -7,7 +6,7 @@
 #include "qjsonrpcservicereply.h"
 #include "keylogger.h"
 #include "user.h"
-#include "logindialog.h"
+#include "gui/logindialog.h"
 
 void gui();
 void logs();
@@ -15,10 +14,8 @@ void network();
 void model();
 
 int main(int argc, char* argv[]) {
-  //  QCoreApplication a(argc, argv);
   QApplication a(argc, argv);
-
-  gui();
+  a.setQuitOnLastWindowClosed(false);
 
   return a.exec();
 }

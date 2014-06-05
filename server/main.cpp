@@ -1,7 +1,21 @@
-//#include <QCoreApplication>
 #include <QApplication>
 #include <QDebug>
-#include "mainwindow.h"
+#include "desktopservice.h"
+
+void gui();
+void network();
+void model();
+
+int main(int argc, char* argv[]) {
+  QApplication a(argc, argv);
+
+  DesktopService* ds = new DesktopService(a);
+  ds->start();
+
+  return a.exec();
+}
+
+#include "gui/mainwindow.h"
 #include "qjsonrpcservice.h"
 #include "qjsonrpctcpserver.h"
 #include "rpcservice.h"
@@ -12,19 +26,6 @@
 #include <QVariant>
 #include <QString>
 #include <QStringList>
-
-void gui();
-void network();
-void model();
-
-int main(int argc, char* argv[]) {
-//  QCoreApplication a(argc, argv);
-  QApplication a(argc, argv);
-
-  gui();
-
-  return a.exec();
-}
 
 void gui() {
   MainWindow* w = new MainWindow;

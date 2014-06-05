@@ -7,9 +7,18 @@ TEMPLATE = app
 CONFIG   += console
 CONFIG   -= app_bundle
 
-SOURCES  += *.cpp
-HEADERS  += *.h
-FORMS    += *.ui
+SOURCES  += \
+    keyloggerunix.cpp \
+    keyloggerwindows.cpp \
+    main.cpp \
+    server.cpp \
+    gui/logindialog.cpp
+HEADERS  += \
+    keylogger.h \
+    server.h \
+    gui/logindialog.h
+FORMS    += \
+    gui/logindialog.ui
 
 win32:DEFINES  += WIN32
 unix:DEFINES   += UNIX
