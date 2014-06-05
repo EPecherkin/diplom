@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 //  QCoreApplication a(argc, argv);
   QApplication a(argc, argv);
 
-  model();
+  gui();
 
   return a.exec();
 }

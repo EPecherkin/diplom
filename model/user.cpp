@@ -3,6 +3,23 @@
 User::User(QObject* parent) : QDjangoModel(parent) {
 }
 
+
+qint32 User::externalUserID() const {
+  return _externalUserID;
+}
+
+void User::externalUserID(const qint32& _externalUserID) {
+  this->_externalUserID = _externalUserID;
+}
+
+Group* User::group() const {
+  return qobject_cast<Group*>(foreignKey("group"));
+}
+
+void User::group(const Group* _group) {
+  setForeignKey("group", const_cast<Group*>(_group));
+}
+
 QString User::login() const {
   return _login;
 }
