@@ -1,6 +1,6 @@
 #include "export.h"
 
-Export::Export(QObject* parent) : QDjangoModel(parent) {
+Export::Export(QObject* parent) : QDjangoModel(parent), _dateTime(QDateTime::currentDateTime()) {
 }
 
 User* Export::user() const {

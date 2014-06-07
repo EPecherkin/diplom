@@ -1,6 +1,6 @@
 #include "computer.h"
 
-Computer::Computer(QObject* parent) : QDjangoModel(parent) {
+Computer::Computer(QObject* parent) : QDjangoModel(parent), _ip(""), _lastActivity(QDateTime::currentDateTime()) {
 }
 
 User* Computer::user() const {

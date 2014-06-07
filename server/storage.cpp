@@ -19,7 +19,7 @@ bool Storage::init() {
   DEBUG << "opened";
 
 //  return true;
-  return createTables();
+  return createTables() && addDefaultData();
 }
 
 template<class C> bool createTable() {
@@ -55,6 +55,50 @@ bool Storage::createTables() {
 
   if(!createTable<Log>())
     return false;
+
+  return true;
+}
+
+bool Storage::addDefaultData() {
+  FUNCTION
+
+  DEBUG << "No Group group";
+  Group ng;
+  ng.name("No Group");
+  if(!ng.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
+
+  DEBUG << "No Group normal";
+  Normal nn;
+  nn.speed(10);
+  nn.group(&ng);
+  if(!nn.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
+
+  DEBUG << "Some group";
+  Group sg;
+  sg.name("Some");
+  if(!sg.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
+
+  DEBUG << "Some normal";
+  Normal ns;
+  ns.speed(10);
+  ns.group(&sg);
+  if(!nn.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
 
   return true;
 }

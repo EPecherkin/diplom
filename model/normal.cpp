@@ -1,6 +1,6 @@
 #include "normal.h"
 
-Normal::Normal(QObject* parent) : QDjangoModel(parent) {
+Normal::Normal(QObject* parent) : QDjangoModel(parent), _speed(0) {
 }
 
 Group* Normal::group() const {

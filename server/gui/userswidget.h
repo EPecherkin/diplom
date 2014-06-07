@@ -2,7 +2,9 @@
 #define USERSWIDGET_H
 
 #include <QWidget>
+#include <QList>
 #include "group.h"
+#include "user.h"
 
 namespace Ui {
 class UsersWidget;
@@ -22,6 +24,9 @@ private slots:
 private:
   Ui::UsersWidget* ui;
   Group* _group;
+  QList<User*> _users;
+
+  void renderData();
 
 };
 

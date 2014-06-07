@@ -1,6 +1,6 @@
 #include "log.h"
 
-Log::Log(QObject* parent) : QDjangoModel(parent) {
+Log::Log(QObject* parent) : QDjangoModel(parent), _table(""), _operation(""), _changes("") {
 }
 
 QString Log::table() const {

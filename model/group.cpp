@@ -1,6 +1,6 @@
 #include "group.h"
 
-Group::Group(QObject* parent) : QDjangoModel(parent) {
+Group::Group(QObject* parent) : QDjangoModel(parent), _name("") {
 }
 
 QString Group::name() const {

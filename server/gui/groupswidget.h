@@ -24,6 +24,8 @@ private:
   Ui::GroupsWidget* ui;
   QList<Group*> _groups;
 
+  void renderData();
+
 };
 
 #endif // GROUPSWIDGET_H

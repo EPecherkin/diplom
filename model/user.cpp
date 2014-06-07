@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(QObject* parent) : QDjangoModel(parent) {
+User::User(QObject* parent) : QDjangoModel(parent), _externalUserID(0), _login(""), _firstName(""), _lastName(""), _middleName(""), _password("") {
 }
 
 
