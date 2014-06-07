@@ -3,7 +3,7 @@
 #include "macros.h"
 #include "usereditdialog.h"
 
-UsersWidget::UsersWidget(QWidget* parent) : QWidget(parent), ui(new Ui::UsersWidget) {
+UsersWidget::UsersWidget(Group* group, QWidget* parent) : QWidget(parent), ui(new Ui::UsersWidget), _group(group) {
   ui->setupUi(this);
 
   ui->usersTW->setRowCount(1);

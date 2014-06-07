@@ -2,6 +2,7 @@
 #define GROUPEDITDIALOG_H
 
 #include <QDialog>
+#include "group.h"
 
 namespace Ui {
 class GroupEditDialog;
@@ -11,7 +12,7 @@ class GroupEditDialog : public QDialog {
   Q_OBJECT
 
 public:
-  explicit GroupEditDialog(QWidget* parent = 0);
+  explicit GroupEditDialog(Group* group = 0, QWidget* parent = 0);
   ~GroupEditDialog();
 
 private slots:
@@ -19,6 +20,7 @@ private slots:
 
 private:
   Ui::GroupEditDialog* ui;
+  Group* _group;
 
 };
 

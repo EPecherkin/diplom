@@ -3,7 +3,7 @@
 #include "macros.h"
 #include "userswidget.h"
 
-GroupEditDialog::GroupEditDialog(QWidget* parent) : QDialog(parent), ui(new Ui::GroupEditDialog) {
+GroupEditDialog::GroupEditDialog(Group* group, QWidget* parent) : QDialog(parent), ui(new Ui::GroupEditDialog), _group(group) {
   ui->setupUi(this);
 }
 
@@ -13,6 +13,6 @@ GroupEditDialog::~GroupEditDialog() {
 
 void GroupEditDialog::on_usersPB_clicked() {
   FUNCTION
-  UsersWidget* uw = new UsersWidget;
+  UsersWidget* uw = new UsersWidget(_group);
   uw->show();
 }

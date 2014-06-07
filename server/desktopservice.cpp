@@ -9,7 +9,7 @@
 #include "gui/mainwindow.h"
 #include "rpcservice.h"
 
-DesktopService::DesktopService(QApplication& _application, QObject* parent) : QObject(parent), _application(&_application) {
+DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application) {
 }
 
 void DesktopService::start() {
@@ -62,8 +62,8 @@ bool DesktopService::initDB() {
   FUNCTION
   QDjango::setDebugEnabled(true);
 
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-  db.setDatabaseName(":memory:");
+  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE3");
+  db.setDatabaseName(DB_PATH);
 
   DEBUG << "try to open";
   if(!db.open()) {
@@ -72,6 +72,8 @@ bool DesktopService::initDB() {
   }
   QDjango::setDatabase(db);
   DEBUG << "opened";
+
+
   return true;
 }
 

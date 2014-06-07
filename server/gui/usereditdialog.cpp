@@ -4,7 +4,7 @@
 #include "computerswidget.h"
 #include "statisticswidget.h"
 
-UserEditDialog::UserEditDialog(QWidget* parent) : QDialog(parent), ui(new Ui::UserEditDialog) {
+UserEditDialog::UserEditDialog(User* user, QWidget* parent) : QDialog(parent), ui(new Ui::UserEditDialog), _user(user) {
   ui->setupUi(this);
 }
 

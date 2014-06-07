@@ -2,6 +2,7 @@
 #define USEREDITDIALOG_H
 
 #include <QDialog>
+#include "user.h"
 
 namespace Ui {
 class UserEditDialog;
@@ -11,7 +12,7 @@ class UserEditDialog : public QDialog {
   Q_OBJECT
 
 public:
-  explicit UserEditDialog(QWidget* parent = 0);
+  explicit UserEditDialog(User* user = 0, QWidget* parent = 0);
   ~UserEditDialog();
 
 private slots:
@@ -20,6 +21,7 @@ private slots:
 
 private:
   Ui::UserEditDialog* ui;
+  User* _user;
 
 };
 
