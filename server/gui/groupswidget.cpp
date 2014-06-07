@@ -2,9 +2,15 @@
 #include "ui_groupswidget.h"
 #include "groupeditdialog.h"
 #include "macros.h"
+#include "QDjango.h"
+#include "QDjangoQuerySet.h"
 
 GroupsWidget::GroupsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GroupsWidget) {
   ui->setupUi(this);
+
+  QDjangoQuerySet<Group> gqs;
+  Group* group = gqs.get(QDjangoWhere());
+  DEBUG << group->name();
 
   ui->groupsTW->setRowCount(1);
 

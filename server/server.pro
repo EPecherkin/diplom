@@ -16,7 +16,8 @@ SOURCES += \
     gui/mainwindow.cpp \
     gui/statisticswidget.cpp \
     gui/usereditdialog.cpp \
-    gui/userswidget.cpp
+    gui/userswidget.cpp \
+    storage.cpp
 HEADERS += \
     macros.h \
     desktopservice.h \
@@ -29,7 +30,8 @@ HEADERS += \
     gui/mainwindow.h \
     gui/statisticswidget.h \
     gui/usereditdialog.h \
-    gui/userswidget.h
+    gui/userswidget.h \
+    storage.h
 FORMS += \
     gui/computerswidget.ui \
     gui/exportwidget.ui \

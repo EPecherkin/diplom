@@ -2,6 +2,8 @@
 #define GROUPSWIDGET_H
 
 #include <QWidget>
+#include <QList>
+#include "group.h"
 
 namespace Ui {
 class GroupsWidget;
@@ -20,6 +22,7 @@ private slots:
 
 private:
   Ui::GroupsWidget* ui;
+  QList<Group*> _groups;
 
 };
 

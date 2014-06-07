@@ -2,19 +2,18 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QAction>
-#include "QDjango.h"
-#include "QDjangoQuerySet.h"
 #include "qjsonrpcservice.h"
 #include "macros.h"
 #include "gui/mainwindow.h"
 #include "rpcservice.h"
+#include "storage.h"
 
-DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application) {
+DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _storage(new Storage) {
 }
 
 void DesktopService::start() {
   FUNCTION
-  if(!initDB() || !startRpcServer()) {
+  if(!_storage->init() || !startRpcServer()) {
     trayIconContextQuitPressed();
     return;
   }
@@ -56,25 +55,6 @@ void DesktopService::trayIconContextQuitPressed() {
   FUNCTION
   _icon->hide();
   _application->quit();
-}
-
-bool DesktopService::initDB() {
-  FUNCTION
-  QDjango::setDebugEnabled(true);
-
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE3");
-  db.setDatabaseName(DB_PATH);
-
-  DEBUG << "try to open";
-  if(!db.open()) {
-    DEBUG << "error: " << db.lastError().text();
-    return false;
-  }
-  QDjango::setDatabase(db);
-  DEBUG << "opened";
-
-
-  return true;
 }
 
 bool DesktopService::startRpcServer() {
