@@ -20,10 +20,9 @@ void GroupsWidget::on_groupsTW_doubleClicked(const QModelIndex& index) {
   FUNCTION
   Group* group = _groups.at(index.row());
   Normal* normal = QDjangoQuerySet<Normal>().get(QDjangoWhere("group_id", QDjangoWhere::Equals, 1));
+
   GroupEditDialog* ged = new GroupEditDialog(group, normal);
-  int result = ged->exec();
-  if(result == QDialog::Accepted)
-    group->save();
+  ged->exec();
   renderData();
 }
 
@@ -39,8 +38,11 @@ void GroupsWidget::on_addPB_clicked() {
 }
 
 void GroupsWidget::renderData() {
+  FUNCTION
   QDjangoQuerySet<Group> gqs = QDjangoQuerySet<Group>().all();
+
   ui->groupsTW->setRowCount(gqs.size());
+
   for(qint32 i = 0; i < gqs.size(); ++i) {
     Group* group = gqs.at(i);
     _groups.append(group);

@@ -21,6 +21,7 @@ public:
 private:
   bool createTables();
   bool addDefaultData();
+  bool addTestData();
 
 };
 

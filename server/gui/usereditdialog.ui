@@ -85,7 +85,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="lastName">
+  <widget class="QLabel" name="lastNameL">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -98,7 +98,7 @@
     <string>Last name</string>
    </property>
   </widget>
-  <widget class="QLabel" name="middleName">
+  <widget class="QLabel" name="middleNameL">
    <property name="geometry">
     <rect>
      <x>10</x>

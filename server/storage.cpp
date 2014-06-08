@@ -19,7 +19,7 @@ bool Storage::init() {
   DEBUG << "opened";
 
 //  return true;
-  return createTables() && addDefaultData();
+  return createTables() && addDefaultData() && addTestData();
 }
 
 template<class C> bool createTable() {
@@ -81,6 +81,24 @@ bool Storage::addDefaultData() {
   }
   DEBUG << "success";
 
+  DEBUG << "Admin user";
+  User au;
+  au.login("admin");
+  au.firstName("First");
+  au.lastName("Last");
+  au.middleName("Middle");
+  au.password("password");
+  au.group(&ng);
+  if(!au.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
+
+  return true;
+}
+
+bool Storage::addTestData() {
   DEBUG << "Some group";
   Group sg;
   sg.name("Some");
@@ -94,7 +112,7 @@ bool Storage::addDefaultData() {
   Normal ns;
   ns.speed(10);
   ns.group(&sg);
-  if(!nn.save()) {
+  if(!ns.save()) {
     DEBUG << "fail";
     return false;
   }
