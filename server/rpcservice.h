@@ -14,7 +14,7 @@ public:
 
 public slots:
   bool ping();
-  QString getUser(QString user, QString password);
+  QString getUser(QString login, QString password);
   QString currentTime();
 
 };

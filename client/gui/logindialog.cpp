@@ -20,5 +20,14 @@ void LoginDialog::done(int r) {
   qint32 port = ui->portLE->text().toInt();
 
   Server* server = new Server(host, port, this);
-  server->ping();
+  if(!server->ping()) {
+    ui->statusL->setText("can't connect");
+    return;
+  }
+
+  User* user = server->getUser(ui->loginLE->text(), ui->passwordLE->text());
+  if(user == 0) {
+    ui->statusL->setText("can't find user");
+    return;
+  }
 }

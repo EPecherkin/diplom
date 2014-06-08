@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>218</width>
-    <height>170</height>
+    <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,6 +54,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="text">
+    <string>3023</string>
+   </property>
   </widget>
   <widget class="QLabel" name="loginL">
    <property name="geometry">
@@ -90,6 +93,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="text">
+    <string>127.0.0.1</string>
+   </property>
   </widget>
   <widget class="QLabel" name="portL">
    <property name="geometry">
@@ -113,6 +119,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="text">
+    <string>admin</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="passwordLE">
    <property name="geometry">
@@ -122,6 +131,22 @@
      <width>113</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>1234</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="statusL">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>160</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

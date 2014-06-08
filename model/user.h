@@ -5,9 +5,10 @@
 #include <QObject>
 #include <QString>
 #include "QDjangoModel.h"
+#include "serializablemodel.h"
 #include "group.h"
 
-class MODEL_EXPORT User : public QDjangoModel {
+class MODEL_EXPORT User : public QDjangoModel, public SerializableModel {
   Q_OBJECT
 
   Q_PROPERTY(qint32 externalUserID READ externalUserID WRITE externalUserID)
@@ -41,6 +42,9 @@ public:
 
   QString password() const;
   void password(const QString&);
+
+  virtual QString toString() const;
+  static User* fromString(const QString&);
 
 private:
   qint32 _externalUserID;

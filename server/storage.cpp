@@ -87,7 +87,7 @@ bool Storage::addDefaultData() {
   au.firstName("First");
   au.lastName("Last");
   au.middleName("Middle");
-  au.password("password");
+  au.password("1234");
   au.group(&ng);
   if(!au.save()) {
     DEBUG << "fail";

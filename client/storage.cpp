@@ -61,62 +61,10 @@ bool Storage::createTables() {
 
 bool Storage::addDefaultData() {
   FUNCTION
-
-  DEBUG << "No Group group";
-  Group ng;
-  ng.name("No Group");
-  if(!ng.save()) {
-    DEBUG << "fail";
-    return false;
-  }
-  DEBUG << "success";
-
-  DEBUG << "No Group normal";
-  Normal nn;
-  nn.speed(10);
-  nn.group(&ng);
-  if(!nn.save()) {
-    DEBUG << "fail";
-    return false;
-  }
-  DEBUG << "success";
-
-  DEBUG << "Admin user";
-  User au;
-  au.login("admin");
-  au.firstName("First");
-  au.lastName("Last");
-  au.middleName("Middle");
-  au.password("password");
-  au.group(&ng);
-  if(!au.save()) {
-    DEBUG << "fail";
-    return false;
-  }
-  DEBUG << "success";
-
   return true;
 }
 
 bool Storage::addTestData() {
-  DEBUG << "Some group";
-  Group sg;
-  sg.name("Some");
-  if(!sg.save()) {
-    DEBUG << "fail";
-    return false;
-  }
-  DEBUG << "success";
-
-  DEBUG << "Some normal";
-  Normal ns;
-  ns.speed(10);
-  ns.group(&sg);
-  if(!ns.save()) {
-    DEBUG << "fail";
-    return false;
-  }
-  DEBUG << "success";
-
+  FUNCTION
   return true;
 }

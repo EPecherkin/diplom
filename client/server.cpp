@@ -18,10 +18,30 @@ bool Server::ping() {
   QJsonRpcServiceReply* reply = service->invokeRemoteMethod("rpc_service.ping");
   QObject::connect(reply, SIGNAL(finished()), loop, SLOT(quit()));
   loop->exec();
-  DEBUG << "response: " << reply->response().result().toBool();
+  DEBUG << "response: " << reply->response();
   bool result = reply->response().result().toBool();
   tcpSocket->close();
   return result;
+}
+
+User* Server::getUser(QString login, QString password) {
+  QTcpSocket* tcpSocket = createTcpSocket();
+  if(tcpSocket == 0)
+    return false;
+
+  QEventLoop* loop = new QEventLoop;
+  QJsonRpcServiceSocket* service = new QJsonRpcServiceSocket(tcpSocket);
+  QJsonRpcServiceReply* reply = service->invokeRemoteMethod("rpc_service.getUser", login, password);
+  QObject::connect(reply, SIGNAL(finished()), loop, SLOT(quit()));
+  loop->exec();
+  DEBUG << "response: " << reply->response();
+  QString result = reply->response().result().toString();
+  if(result.isEmpty()) {
+    return 0;
+  }
+  User* user = User::fromString(result);
+  tcpSocket->close();
+  return user;
 }
 
 QTcpSocket* Server::createTcpSocket() {

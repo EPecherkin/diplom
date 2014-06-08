@@ -13,7 +13,7 @@ public:
   explicit Server(QString host, qint32 port, QObject* parent = 0);
 
   bool ping();
-  User* getUser(QString user, QString password);
+  User* getUser(QString login, QString password);
 
 private:
   QString _host;

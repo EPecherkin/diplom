@@ -59,3 +59,21 @@ QString User::password() const {
 void User::password(const QString& _password) {
   this->_password = _password;
 }
+
+QString User::toString() const {
+  QByteArray ba;
+  QDataStream ds(&ba, QIODevice::WriteOnly);
+  ds << _login << _firstName << _lastName << _middleName << _password;
+  return QString::fromUtf8(ba.toBase64());
+}
+
+User* User::fromString(const QString& string) {
+  User* user = new User;
+
+  QByteArray ba = QByteArray::fromBase64(string.toUtf8());
+  QDataStream ds(&ba, QIODevice::ReadOnly);
+
+  ds >> user->_login >> user->_firstName >> user->_lastName >> user->_middleName >> user->_password;
+
+  return user;
+}
