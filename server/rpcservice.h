@@ -13,7 +13,9 @@ public:
   explicit RpcService(QObject* parent = 0);
 
 public slots:
-    QString currentTime();
+  bool ping();
+  QString getUser(QString user, QString password);
+  QString currentTime();
 
 };
 

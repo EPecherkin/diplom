@@ -2,6 +2,7 @@
 #define LOGINDIALOG_H
 
 #include <QDialog>
+#include <QString>
 
 namespace Ui {
 class LoginDialog;
@@ -13,6 +14,9 @@ class LoginDialog : public QDialog {
 public:
   explicit LoginDialog(QWidget* parent = 0);
   ~LoginDialog();
+
+private slots:
+  virtual void done(int r);
 
 private:
   Ui::LoginDialog* ui;

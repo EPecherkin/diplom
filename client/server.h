@@ -2,12 +2,24 @@
 #define SERVER_H
 
 #include <QObject>
+#include <QString>
+#include <QTcpSocket>
+#include "user.h"
 
 class Server : public QObject {
   Q_OBJECT
 
 public:
-  explicit Server(QObject* parent = 0);
+  explicit Server(QString host, qint32 port, QObject* parent = 0);
+
+  bool ping();
+  User* getUser(QString user, QString password);
+
+private:
+  QString _host;
+  qint32 _port;
+
+  QTcpSocket* createTcpSocket();
 
 };
 

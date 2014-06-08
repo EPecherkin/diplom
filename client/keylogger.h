@@ -10,6 +10,7 @@ class KeyLogger : public QObject {
 public:
   explicit KeyLogger(QObject* parent = 0);
 
+public slots:
   void startLog();
 
 signals:

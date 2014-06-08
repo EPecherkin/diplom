@@ -4,19 +4,26 @@
 #include <QAction>
 #include "qjsonrpcservice.h"
 #include "macros.h"
+#include "gui/logindialog.h"
 #include "gui/mainwindow.h"
 #include "storage.h"
 
-DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _keyLogger(new KeyLogger), _storage(new Storage) {
-  connect(_keyLogger, SIGNAL(keyPressed(KeyPress*)), this, SLOT(keyPressed(KeyPress*)));
+DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _keyLoggerThread(new QThread), _keyLogger(new KeyLogger), _storage(new Storage) {
+  _keyLogger->moveToThread(_keyLoggerThread);
+  connect(_keyLoggerThread, SIGNAL(started()), _keyLogger, SLOT(startLog()), Qt::DirectConnection);
 }
 
 void DesktopService::start() {
   FUNCTION
-  _keyLogger->startLog();
 
   if(!_storage->init()) {
-    trayIconContextQuitPressed();
+    _application->quit();
+    return;
+  }
+
+  LoginDialog* ld = new LoginDialog;
+  if(ld->exec() != QDialog::Accepted) {
+    _application->quit();
     return;
   }
 
@@ -35,6 +42,9 @@ void DesktopService::start() {
 
   connect(quitAction, SIGNAL(triggered()), this, SLOT(trayIconContextQuitPressed()));
   connect(_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconPressed(QSystemTrayIcon::ActivationReason)));
+
+  connect(_keyLogger, SIGNAL(keyPressed(KeyPress*)), this, SLOT(keyPressed(KeyPress*)), Qt::DirectConnection);
+  _keyLoggerThread->start();
 
   _mainWindow = new MainWindow;
   _mainWindow->show();

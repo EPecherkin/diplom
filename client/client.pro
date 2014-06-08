@@ -4,8 +4,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET   = client
 TEMPLATE = app
 
-CONFIG += console
-
 SOURCES  += \
     desktopservice.cpp \
     main.cpp \

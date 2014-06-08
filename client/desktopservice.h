@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QApplication>
 #include <QSystemTrayIcon>
+#include <QThread>
 #include "gui/mainwindow.h"
 #include "keylogger.h"
 #include "storage.h"
@@ -25,6 +26,7 @@ private:
   QApplication* _application;
   QSystemTrayIcon* _icon;
   MainWindow* _mainWindow;
+  QThread* _keyLoggerThread;
   KeyLogger* _keyLogger;
   Storage* _storage;
 
