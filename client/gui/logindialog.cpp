@@ -1,6 +1,7 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 #include "server.h"
+#include "desktopservice.h"
 
 LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent), ui(new Ui::LoginDialog) {
   ui->setupUi(this);
@@ -12,7 +13,7 @@ LoginDialog::~LoginDialog() {
 
 void LoginDialog::done(int r) {
   if(r != Accepted) {
-    done(r);
+    QDialog::done(r);
     return;
   }
 
@@ -30,4 +31,13 @@ void LoginDialog::done(int r) {
     ui->statusL->setText("can't find user");
     return;
   }
+
+  if(!user->save()) {
+    ui->statusL->setText("can't save user");
+    return;
+  }
+
+  DesktopService::currentUser = user;
+
+  QDialog::done(r);
 }

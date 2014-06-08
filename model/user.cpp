@@ -3,7 +3,6 @@
 User::User(QObject* parent) : QDjangoModel(parent), _externalUserID(0), _login(""), _firstName(""), _lastName(""), _middleName(""), _password("") {
 }
 
-
 qint32 User::externalUserID() const {
   return _externalUserID;
 }
@@ -63,7 +62,7 @@ void User::password(const QString& _password) {
 QString User::toString() const {
   QByteArray ba;
   QDataStream ds(&ba, QIODevice::WriteOnly);
-  ds << _login << _firstName << _lastName << _middleName << _password;
+  ds << pk() << _login << _firstName << _lastName << _middleName << _password;
   return QString::fromUtf8(ba.toBase64());
 }
 
@@ -73,7 +72,9 @@ User* User::fromString(const QString& string) {
   QByteArray ba = QByteArray::fromBase64(string.toUtf8());
   QDataStream ds(&ba, QIODevice::ReadOnly);
 
-  ds >> user->_login >> user->_firstName >> user->_lastName >> user->_middleName >> user->_password;
+  QVariant pk;
+  ds >> pk >> user->_login >> user->_firstName >> user->_lastName >> user->_middleName >> user->_password;
+  user->setPk(pk);
 
   return user;
 }

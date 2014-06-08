@@ -8,6 +8,8 @@
 #include "gui/mainwindow.h"
 #include "storage.h"
 
+User* DesktopService::currentUser = 0;
+
 DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _keyLoggerThread(new QThread), _keyLogger(new KeyLogger), _storage(new Storage) {
   _keyLogger->moveToThread(_keyLoggerThread);
   connect(_keyLoggerThread, SIGNAL(started()), _keyLogger, SLOT(startLog()), Qt::DirectConnection);
@@ -43,7 +45,7 @@ void DesktopService::start() {
   connect(quitAction, SIGNAL(triggered()), this, SLOT(trayIconContextQuitPressed()));
   connect(_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconPressed(QSystemTrayIcon::ActivationReason)));
 
-  connect(_keyLogger, SIGNAL(keyPressed(KeyPress*)), this, SLOT(keyPressed(KeyPress*)), Qt::DirectConnection);
+  connect(_keyLogger, SIGNAL(keyPressed(KeyPress*)), this, SLOT(keyPressed(KeyPress*)), Qt::QueuedConnection);
   _keyLoggerThread->start();
 
   _mainWindow = new MainWindow;
@@ -70,5 +72,6 @@ void DesktopService::trayIconContextQuitPressed() {
 }
 
 void DesktopService::keyPressed(KeyPress* keyPress) {
-  DEBUG << keyPress->application() << keyPress->keys();
+  keyPress->user(DesktopService::currentUser);
+  keyPress->save();
 }

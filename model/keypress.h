@@ -23,6 +23,7 @@ class MODEL_EXPORT KeyPress : public QDjangoModel {
   Q_PROPERTY(QByteArray ser_keys READ ser_keys WRITE ser_keys)
 
   Q_CLASSINFO("keys", "ignore_field=true")
+  Q_CLASSINFO("computer", "null=true")
 
 public:
   explicit KeyPress(QObject * parent = 0);

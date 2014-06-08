@@ -13,6 +13,8 @@ class DesktopService : public QObject {
   Q_OBJECT
 
 public:
+  static User* currentUser;
+
   explicit DesktopService(QApplication* _application, QObject* parent = 0);
 
   void start();

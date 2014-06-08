@@ -27,7 +27,7 @@ bool Server::ping() {
 User* Server::getUser(QString login, QString password) {
   QTcpSocket* tcpSocket = createTcpSocket();
   if(tcpSocket == 0)
-    return false;
+    return 0;
 
   QEventLoop* loop = new QEventLoop;
   QJsonRpcServiceSocket* service = new QJsonRpcServiceSocket(tcpSocket);

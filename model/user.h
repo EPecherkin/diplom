@@ -19,6 +19,8 @@ class MODEL_EXPORT User : public QDjangoModel, public SerializableModel {
   Q_PROPERTY(QString middleName READ middleName WRITE middleName)
   Q_PROPERTY(QString password READ password WRITE password)
 
+  Q_CLASSINFO("group", "null=true")
+
 public:
   explicit User(QObject * parent = 0);
 

