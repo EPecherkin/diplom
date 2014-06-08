@@ -14,6 +14,7 @@ public:
 
   bool ping();
   User* getUser(QString login, QString password);
+  bool updateUser(User* user);
 
 private:
   QString _host;

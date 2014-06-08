@@ -8,9 +8,10 @@
 #include "gui/mainwindow.h"
 #include "storage.h"
 
-User* DesktopService::currentUser = 0;
+DesktopService* DesktopService::_instance = 0;
 
 DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _keyLoggerThread(new QThread), _keyLogger(new KeyLogger), _storage(new Storage) {
+  DesktopService::_instance = this;
   _keyLogger->moveToThread(_keyLoggerThread);
   connect(_keyLoggerThread, SIGNAL(started()), _keyLogger, SLOT(startLog()), Qt::DirectConnection);
 }

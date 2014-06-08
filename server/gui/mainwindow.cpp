@@ -15,18 +15,30 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_groupsPB_clicked() {
   FUNCTION
-  GroupsWidget* gw = new GroupsWidget;
-  gw->show();
+  QGridLayout* layout = qobject_cast<QGridLayout*>(ui->centralwidget->layout());
+  QLayoutItem* layoutItem = layout->takeAt(3);
+  delete layoutItem->widget();
+  delete layoutItem;
+  GroupsWidget* gw = new GroupsWidget(this);
+  layout->addWidget(gw, 1, 0, 1, 3);
 }
 
 void MainWindow::on_usersPB_clicked() {
   FUNCTION
+  QGridLayout* layout = qobject_cast<QGridLayout*>(ui->centralwidget->layout());
+  QLayoutItem* layoutItem = layout->takeAt(3);
+  delete layoutItem->widget();
+  delete layoutItem;
   UsersWidget* uw = new UsersWidget;
-  uw->show();
+  layout->addWidget(uw, 1, 0, 1, 3);
 }
 
 void MainWindow::on_logsPB_clicked() {
   FUNCTION
+  QGridLayout* layout = qobject_cast<QGridLayout*>(ui->centralwidget->layout());
+  QLayoutItem* layoutItem = layout->takeAt(3);
+  delete layoutItem->widget();
+  delete layoutItem;
   LogsWidget* lw = new LogsWidget;
-  lw->show();
+  layout->addWidget(lw, 1, 0, 1, 3);
 }

@@ -7,13 +7,17 @@
 #include <QThread>
 #include "gui/mainwindow.h"
 #include "keylogger.h"
+#include "server.h"
 #include "storage.h"
 
 class DesktopService : public QObject {
   Q_OBJECT
 
 public:
-  static User* currentUser;
+  static DesktopService* _instance;
+
+  User* currentUser;
+  Server* _server;
 
   explicit DesktopService(QApplication* _application, QObject* parent = 0);
 

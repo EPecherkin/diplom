@@ -15,7 +15,7 @@ public:
 public slots:
   bool ping();
   QString getUser(QString login, QString password);
-  QString currentTime();
+  bool updateUser(QString serializedUser);
 
 };
 

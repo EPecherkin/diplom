@@ -10,7 +10,11 @@ SOURCES  += \
     server.cpp \
     storage.cpp \
     gui/logindialog.cpp \
-    gui/mainwindow.cpp
+    gui/mainwindow.cpp \
+    gui/computerswidget.cpp \
+    gui/exportwidget.cpp \
+    gui/statisticswidget.cpp \
+    gui/usereditdialog.cpp
 HEADERS  += \
     desktopservice.h \
     keylogger.h \
@@ -18,10 +22,18 @@ HEADERS  += \
     server.h \
     storage.h \
     gui/logindialog.h \
-    gui/mainwindow.h
+    gui/mainwindow.h \
+    gui/computerswidget.h \
+    gui/exportwidget.h \
+    gui/statisticswidget.h \
+    gui/usereditdialog.h
 FORMS    += \
     gui/logindialog.ui \
-    gui/mainwindow.ui
+    gui/mainwindow.ui \
+    gui/computerswidget.ui \
+    gui/exportwidget.ui \
+    gui/statisticswidget.ui \
+    gui/usereditdialog.ui
 
 RESOURCES += \
     resources.qrc

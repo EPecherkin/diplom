@@ -23,7 +23,18 @@ QString RpcService::getUser(QString login, QString password) {
   return user->toString();
 }
 
-QString RpcService::currentTime() {
-  FUNCTION
-  return QTime::currentTime().toString();
+bool RpcService::updateUser(QString serializedUser) {
+  User* newUser = User::fromString(serializedUser);
+  User* user = QDjangoQuerySet<User>().get(QDjangoWhere("id", QDjangoWhere::Equals, newUser->pk()));
+  if(user == 0)
+    return false;
+
+  user->login(newUser->login());
+  user->firstName(newUser->firstName());
+  user->lastName(newUser->lastName());
+  user->middleName(newUser->middleName());
+  if(!newUser->password().isEmpty())
+    user->password(newUser->password());
+
+  return user->save();
 }

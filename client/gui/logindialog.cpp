@@ -20,13 +20,13 @@ void LoginDialog::done(int r) {
   QString host = ui->adressLE->text();
   qint32 port = ui->portLE->text().toInt();
 
-  Server* server = new Server(host, port, this);
-  if(!server->ping()) {
+  DesktopService::_instance->_server = new Server(host, port, this);
+  if(!DesktopService::_instance->_server->ping()) {
     ui->statusL->setText("can't connect");
     return;
   }
 
-  User* user = server->getUser(ui->loginLE->text(), ui->passwordLE->text());
+  User* user = DesktopService::_instance->_server->getUser(ui->loginLE->text(), ui->passwordLE->text());
   if(user == 0) {
     ui->statusL->setText("can't find user");
     return;
@@ -37,7 +37,7 @@ void LoginDialog::done(int r) {
     return;
   }
 
-  DesktopService::currentUser = user;
+  DesktopService::_instance->currentUser = user;
 
   QDialog::done(r);
 }
