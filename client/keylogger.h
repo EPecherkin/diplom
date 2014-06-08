@@ -1,10 +1,19 @@
 #ifndef KEYLOGGER_H
 #define KEYLOGGER_H
 
-class KeyLogger {
+#include <QObject>
+#include <keypress.h>
+
+class KeyLogger : public QObject {
+  Q_OBJECT
 
 public:
-  void log();
+  explicit KeyLogger(QObject* parent = 0);
+
+  void startLog();
+
+signals:
+  void keyPressed(KeyPress* press);
 
 };
 

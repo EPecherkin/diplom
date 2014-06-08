@@ -46,9 +46,6 @@ FORMS += \
 RESOURCES += \
     resources.qrc
 
-win32:DEFINES  += WIN32
-unix:DEFINES   += UNIX
-
 debug: {
   win32:DEFINES += DB_PATH=QString(\\\"d:/archives/education/evm/evm_5/!diplom/keylogger_db/server.sqlite3\\\")
   unix:DEFINES += DB_PATH=QString(\\\"/other/archives/education/evm/evm_5/!diplom/keylogger_db/server.sqlite3\\\")

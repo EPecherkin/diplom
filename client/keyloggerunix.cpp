@@ -1,8 +1,8 @@
-#ifdef UNIX
 #include "keylogger.h"
 
-void KeyLogger::log() {
-
+KeyLogger::KeyLogger(QObject* parent) : QObject(parent) {
 }
 
-#endif
+void KeyLogger::startLog() {
+
+}

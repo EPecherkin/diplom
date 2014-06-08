@@ -5,15 +5,17 @@
 #include "qjsonrpcservice.h"
 #include "macros.h"
 #include "gui/mainwindow.h"
-#include "rpcservice.h"
 #include "storage.h"
 
-DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _rpcServer(new QJsonRpcTcpServer), _storage(new Storage) {
+DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _keyLogger(new KeyLogger), _storage(new Storage) {
+  connect(_keyLogger, SIGNAL(keyPressed(KeyPress*)), this, SLOT(keyPressed(KeyPress*)));
 }
 
 void DesktopService::start() {
   FUNCTION
-  if(!_storage->init() || !startRpcServer()) {
+  _keyLogger->startLog();
+
+  if(!_storage->init()) {
     trayIconContextQuitPressed();
     return;
   }
@@ -57,14 +59,6 @@ void DesktopService::trayIconContextQuitPressed() {
   _application->quit();
 }
 
-bool DesktopService::startRpcServer() {
-  FUNCTION
-  DEBUG << "try to start";
-  _rpcServer->addService(new RpcService);
-  if(!_rpcServer->listen(QHostAddress("127.0.0.1"), 3023)) {
-    DEBUG << "error: " << _rpcServer->errorString();
-    return false;
-  }
-  DEBUG << "started";
-  return true;
+void DesktopService::keyPressed(KeyPress* keyPress) {
+  DEBUG << keyPress->application() << keyPress->keys();
 }
