@@ -72,7 +72,74 @@ void DesktopService::trayIconContextQuitPressed() {
   _application->quit();
 }
 
+QDateTime lastMinimizeAndSend = QDateTime::currentDateTime();
+
 void DesktopService::keyPressed(KeyPress* keyPress) {
+  FUNCTION
+  DEBUG << keyPress->application() << keyPress->keys();
   keyPress->user(DesktopService::currentUser);
   keyPress->save();
+
+  QDateTime currentDateTime = QDateTime::currentDateTime();
+  if(lastMinimizeAndSend.secsTo(currentDateTime) > 5*60) {
+    minimizeKeyPresses();
+    sendKeyPresses();
+    lastMinimizeAndSend = currentDateTime;
+  }
+}
+
+void DesktopService::minimizeKeyPresses() {
+  FUNCTION
+  QList<KeyPress*> kps;
+
+  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, DesktopService::_instance->currentUser->pk()));
+  for(qint32 i = 0; i < kpqs.size(); ++i) {
+    kps.push_back(kpqs.at(i));
+  }
+
+  for(qint32 i = 0; i < kps.size() - 1; ++i) {
+    KeyPress* kp = kps.at(i);
+    KeyPress* kpn = kps.at(i+1);
+
+    if(kp->application() != kpn->application()) {
+      continue;
+    }
+
+    QDateTime start = kp->start();
+    qint64 duration = kp->duration();
+    if(duration > 5*60) {
+      continue;
+    }
+
+    QDateTime startn = kpn->start();
+    qint64 durationn = kpn->duration();
+    qint64 secsTo = start.addSecs(duration).secsTo(startn);
+    if(secsTo > 1*60) {
+      continue;
+    }
+
+    QStringList keys = kp->keys();
+    QStringList keysn = kpn->keys();
+    for(qint32 j = 0; j < keysn.size(); ++j) {
+      keys.push_back(keysn.at(j));
+    }
+
+    duration += secsTo + durationn;
+    kp->keys(keys);
+    kp->duration(duration);
+    kp->save();
+    kpn->remove();
+    kps.removeAt(i+1);
+    --i;
+  }
+}
+
+void DesktopService::sendKeyPresses() {
+  FUNCTION
+  QList<KeyPress*> kps;
+
+  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, DesktopService::_instance->currentUser->pk()));
+  for(qint32 i = 0; i < kpqs.size(); ++i) {
+    kps.push_back(kpqs.at(i));
+  }
 }

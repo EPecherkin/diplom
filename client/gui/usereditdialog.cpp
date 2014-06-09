@@ -54,5 +54,4 @@ void UserEditDialog::renderData() {
   ui->firstNameLE->setText(_user->firstName());
   ui->lastNameLE->setText(_user->lastName());
   ui->middleNameLE->setText(_user->middleName());
-
 }

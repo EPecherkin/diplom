@@ -36,6 +36,9 @@ private:
   KeyLogger* _keyLogger;
   Storage* _storage;
 
+  void minimizeKeyPresses();
+  void sendKeyPresses();
+
 };
 
 #endif // DESKTOPSERVICE_H
