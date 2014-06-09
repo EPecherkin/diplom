@@ -13,6 +13,8 @@ class LogsWidget : public QWidget {
 public:
   explicit LogsWidget(QWidget* parent = 0);
   ~LogsWidget();
+private slots:
+  void renderData();
 
 private:
   Ui::LogsWidget* ui;

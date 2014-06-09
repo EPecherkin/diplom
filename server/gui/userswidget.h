@@ -18,6 +18,8 @@ public:
   ~UsersWidget();
 
 private slots:
+  void renderData();
+
   void on_usersTW_doubleClicked(const QModelIndex&);
   void on_addPB_clicked();
 
@@ -25,8 +27,6 @@ private:
   Ui::UsersWidget* ui;
   Group* _group;
   QList<User*> _users;
-
-  void renderData();
 
 };
 

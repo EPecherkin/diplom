@@ -22,6 +22,7 @@ void GroupEditDialog::on_usersPB_clicked() {
 }
 
 void GroupEditDialog::done(int r) {
+  FUNCTION
   if(r == Accepted) {
     _group->name(ui->nameLE->text());
     _group->save();
@@ -34,6 +35,7 @@ void GroupEditDialog::done(int r) {
 }
 
 void GroupEditDialog::renderData() {
+  FUNCTION
   ui->usersPB->setVisible(_group->pk().isValid());
 
   ui->nameLE->setText(_group->name());

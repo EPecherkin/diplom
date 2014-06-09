@@ -16,15 +16,14 @@ public:
   ~StatisticsWidget();
 
 private slots:
-  void on_viewCB_currentTextChanged(const QString&);
-  void on_groupByCB_currentTextChanged(const QString&);
+  void renderData();
+
   void on_exportPB_clicked();
 
 private:
   Ui::StatisticsWidget* ui;
   User* _user;
 
-  void renderData();
 };
 
 #endif // STATISTICSWIDGET_H

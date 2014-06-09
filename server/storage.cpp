@@ -108,6 +108,7 @@ bool Storage::addDefaultData() {
 }
 
 bool Storage::addTestData() {
+  FUNCTION
   DEBUG << "Some group";
   Group sg;
   sg.name("Some");

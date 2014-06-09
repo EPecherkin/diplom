@@ -2,6 +2,7 @@
 #include "ui_computerswidget.h"
 #include "QDjango.h"
 #include "QDjangoQuerySet.h"
+#include "macros.h"
 #include "computer.h"
 
 ComputersWidget::ComputersWidget(User* user, QWidget* parent) : QWidget(parent), ui(new Ui::ComputersWidget), _user(user) {
@@ -15,6 +16,7 @@ ComputersWidget::~ComputersWidget() {
 }
 
 void ComputersWidget::renderData() {
+  FUNCTION
   QDjangoQuerySet<Computer> cqs = QDjangoQuerySet<Computer>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, _user->pk()));
 
   ui->computersTW->setRowCount(cqs.size());

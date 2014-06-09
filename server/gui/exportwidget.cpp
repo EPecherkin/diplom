@@ -3,7 +3,7 @@
 #include <QFileDialog>
 #include "macros.h"
 
-ExportWidget::ExportWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ExportWidget) {
+ExportWidget::ExportWidget(User* user, QWidget* parent) : QWidget(parent), ui(new Ui::ExportWidget), _user(user) {
   ui->setupUi(this);
 }
 

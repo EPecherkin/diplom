@@ -9,10 +9,12 @@ RpcService::RpcService(QObject* parent) :  QJsonRpcService(parent) {
 }
 
 bool RpcService::ping() {
+  FUNCTION
   return true;
 }
 
 QString RpcService::getUser(QString login, QString password) {
+  FUNCTION
   QDjangoQuerySet<User> uqs;
   User* user = uqs.get(QDjangoWhere("login", QDjangoWhere::Equals, login)
                        && QDjangoWhere("password", QDjangoWhere::Equals, password));
@@ -24,6 +26,7 @@ QString RpcService::getUser(QString login, QString password) {
 }
 
 bool RpcService::updateUser(QString serializedUser) {
+  FUNCTION
   User* newUser = User::fromString(serializedUser);
   User* user = QDjangoQuerySet<User>().get(QDjangoWhere("id", QDjangoWhere::Equals, newUser->pk()));
   if(user == 0)
@@ -40,16 +43,19 @@ bool RpcService::updateUser(QString serializedUser) {
 }
 
 QString RpcService::getComputer(QString serializedUser) {
+  FUNCTION
   Computer* computer = QDjangoQuerySet<Computer>().get(QDjangoWhere("id", QDjangoWhere::Equals, 1));
   return computer->toString();
 }
 
 bool RpcService::addKeyPress(QString serializedKeyPress) {
+  FUNCTION
   KeyPress* keyPress = KeyPress::fromString(serializedKeyPress);
   return keyPress->save();
 }
 
 QString RpcService::getKeyPresses(QString serializedUser) {
+  FUNCTION
   User* user = User::fromString(serializedUser);
   QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, user->pk()));
   QStringList serializedKeyPresses;

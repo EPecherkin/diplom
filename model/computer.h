@@ -16,6 +16,9 @@ class MODEL_EXPORT Computer : public QDjangoModel, public SerializableModel {
   Q_PROPERTY(QString ip READ ip WRITE ip)
   Q_PROPERTY(QDateTime lastActivity READ lastActivity WRITE lastActivity)
 
+  Q_PROPERTY(qint32 user_id READ user_id WRITE user_id)
+  Q_CLASSINFO("user_id", "ignore_field=true")
+
 public:
   explicit Computer(QObject* parent = 0);
 
@@ -28,12 +31,16 @@ public:
   QDateTime lastActivity() const;
   void lastActivity(const QDateTime&);
 
+  qint32 user_id() const;
+  void user_id(const qint32&);
+
   virtual QString toString() const;
   static Computer* fromString(const QString&);
 
 private:
   QString _ip;
   QDateTime _lastActivity;
+  qint32 _user_id;
 
 };
 

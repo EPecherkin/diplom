@@ -17,14 +17,14 @@ public:
   ~GroupsWidget();
 
 private slots:
+  void renderData();
+
   void on_groupsTW_doubleClicked(const QModelIndex&);
   void on_addPB_clicked();
 
 private:
   Ui::GroupsWidget* ui;
   QList<Group*> _groups;
-
-  void renderData();
 
 };
 

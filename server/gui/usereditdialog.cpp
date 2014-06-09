@@ -29,6 +29,7 @@ void UserEditDialog::on_statisticsPB_clicked() {
 }
 
 void UserEditDialog::done(int r) {
+  FUNCTION
   if(r == Accepted) {
     _user->login(ui->loginLE->text());
     _user->firstName(ui->firstNameLE->text());
@@ -48,6 +49,7 @@ void UserEditDialog::done(int r) {
 }
 
 void UserEditDialog::renderData() {
+  FUNCTION
   ui->computersPB->setVisible(_user->pk().isValid());
   ui->statisticsPB->setVisible(_user->pk().isValid());
 

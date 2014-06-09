@@ -25,6 +25,11 @@ class MODEL_EXPORT KeyPress : public QDjangoModel, public SerializableModel {
 
   Q_CLASSINFO("keys", "ignore_field=true")
 
+  Q_PROPERTY(qint32 user_id READ user_id WRITE user_id)
+  Q_PROPERTY(qint32 computer_id READ computer_id WRITE computer_id)
+  Q_CLASSINFO("user_id", "ignore_field=true")
+  Q_CLASSINFO("computer_id", "ignore_field=true")
+
 public:
   explicit KeyPress(QObject * parent = 0);
 
@@ -49,6 +54,12 @@ public:
   QByteArray ser_keys() const;
   void ser_keys(const QByteArray&);
 
+  qint32 user_id() const;
+  void user_id(const qint32&);
+
+  qint32 computer_id() const;
+  void computer_id(const qint32&);
+
   virtual QString toString() const;
   static KeyPress* fromString(const QString&);
 
@@ -57,6 +68,8 @@ private:
   QDateTime _start;
   qint64 _duration;
   QByteArray _ser_keys;
+  qint32 _user_id;
+  qint32 _computer_id;
 
 };
 
