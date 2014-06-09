@@ -7,8 +7,7 @@ bool Storage::init() {
   QDjango::setDebugEnabled(true);
 
   QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-//  db.setDatabaseName(DB_PATH);
-  db.setDatabaseName(":memory:");
+  db.setDatabaseName(DB_PATH);
 
   DEBUG << "try to open";
   if(!db.open()) {
