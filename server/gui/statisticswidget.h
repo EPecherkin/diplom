@@ -2,6 +2,7 @@
 #define STATISTICSWIDGET_H
 
 #include <QWidget>
+#include "user.h"
 
 namespace Ui {
 class StatisticsWidget;
@@ -11,7 +12,7 @@ class StatisticsWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit StatisticsWidget(QWidget* parent = 0);
+  explicit StatisticsWidget(User* user, QWidget* parent = 0);
   ~StatisticsWidget();
 
 private slots:
@@ -21,7 +22,9 @@ private slots:
 
 private:
   Ui::StatisticsWidget* ui;
+  User* _user;
 
+  void renderData();
 };
 
 #endif // STATISTICSWIDGET_H

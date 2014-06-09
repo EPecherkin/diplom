@@ -18,7 +18,7 @@ UsersWidget::~UsersWidget() {
 void UsersWidget::on_usersTW_doubleClicked(const QModelIndex& index) {
   FUNCTION
   User* user = _users.at(index.row());
-  UserEditDialog* ued = new UserEditDialog(user);
+  UserEditDialog* ued = new UserEditDialog(user, this);
   ued->exec();
   renderData();
 }
@@ -28,7 +28,7 @@ void UsersWidget::on_addPB_clicked() {
   User* user = new User;
   Group* group = QDjangoQuerySet<Group>().get(QDjangoWhere("id", QDjangoWhere::Equals, 1));
   user->group(group);
-  UserEditDialog* ued = new UserEditDialog(user);
+  UserEditDialog* ued = new UserEditDialog(user, this);
   ued->exec();
   renderData();
 }

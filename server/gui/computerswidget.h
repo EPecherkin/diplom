@@ -19,6 +19,8 @@ private:
   Ui::ComputersWidget* ui;
   User* _user;
 
+  void renderData();
+
 };
 
 #endif // COMPUTERSWIDGET_H

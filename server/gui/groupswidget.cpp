@@ -21,7 +21,7 @@ void GroupsWidget::on_groupsTW_doubleClicked(const QModelIndex& index) {
   Group* group = _groups.at(index.row());
   Normal* normal = QDjangoQuerySet<Normal>().get(QDjangoWhere("group_id", QDjangoWhere::Equals, 1));
 
-  GroupEditDialog* ged = new GroupEditDialog(group, normal);
+  GroupEditDialog* ged = new GroupEditDialog(group, normal, this);
   ged->exec();
   renderData();
 }
@@ -32,7 +32,7 @@ void GroupsWidget::on_addPB_clicked() {
   Normal* normal = new Normal;
   normal->group(group);
 
-  GroupEditDialog* ged = new GroupEditDialog(group, normal);
+  GroupEditDialog* ged = new GroupEditDialog(group, normal, this);
   ged->exec();
   renderData();
 }

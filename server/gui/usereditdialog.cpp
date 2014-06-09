@@ -18,13 +18,13 @@ UserEditDialog::~UserEditDialog() {
 
 void UserEditDialog::on_computersPB_clicked() {
   FUNCTION
-  ComputersWidget* cw = new ComputersWidget;
+  ComputersWidget* cw = new ComputersWidget(_user);
   cw->show();
 }
 
 void UserEditDialog::on_statisticsPB_clicked() {
   FUNCTION
-  StatisticsWidget* sw = new StatisticsWidget;
+  StatisticsWidget* sw = new StatisticsWidget(_user);
   sw->show();
 }
 
