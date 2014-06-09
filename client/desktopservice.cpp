@@ -30,6 +30,7 @@ void DesktopService::start() {
     return;
   }
   computer = server->getComputer(currentUser);
+  computer->save();
 
   _application->setQuitOnLastWindowClosed(false);
 
