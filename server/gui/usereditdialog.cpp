@@ -48,6 +48,9 @@ void UserEditDialog::done(int r) {
 }
 
 void UserEditDialog::renderData() {
+  ui->computersPB->setVisible(_user->pk().isValid());
+  ui->statisticsPB->setVisible(_user->pk().isValid());
+
   ui->loginLE->setText(_user->login());
   ui->firstNameLE->setText(_user->firstName());
   ui->lastNameLE->setText(_user->lastName());

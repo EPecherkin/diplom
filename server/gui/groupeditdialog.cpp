@@ -34,6 +34,8 @@ void GroupEditDialog::done(int r) {
 }
 
 void GroupEditDialog::renderData() {
+  ui->usersPB->setVisible(_group->pk().isValid());
+
   ui->nameLE->setText(_group->name());
   ui->normalTypeSpeedLE->setText(QString::number(_normal->speed()));
 }
