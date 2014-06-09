@@ -61,7 +61,8 @@ void UserEditDialog::renderData() {
     Group* group = gqs.at(i);
     _groups.append(group);
     ui->groupCB->addItem(group->name());
-    if(_user->group()->pk() == group->pk()) {
+    Group* userGroup = QDjangoQuerySet<Group>().get(QDjangoWhere("id", QDjangoWhere::Equals, _user->property("group_id")));
+    if(userGroup->pk() == group->pk()) {
       ui->groupCB->setCurrentIndex(i);
     }
   }

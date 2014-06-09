@@ -51,7 +51,8 @@ void UsersWidget::renderData() {
     QTableWidgetItem* item0 = new QTableWidgetItem(user->login());
     QString fullName = QString().append(user->lastName()).append(" ").append(user->firstName()).append(" ").append(user->middleName());
     QTableWidgetItem* item1 = new QTableWidgetItem(fullName);
-    QTableWidgetItem* item2 = new QTableWidgetItem(user->group()->name());
+    Group* group = QDjangoQuerySet<Group>().get(QDjangoWhere("id", QDjangoWhere::Equals, user->property("group_id")));
+    QTableWidgetItem* item2 = new QTableWidgetItem(group->name());
 
     ui->usersTW->setItem(i, 0, item0);
     ui->usersTW->setItem(i, 1, item1);
