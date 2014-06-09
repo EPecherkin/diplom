@@ -4,7 +4,10 @@
 #include <QObject>
 #include <QString>
 #include <QTcpSocket>
+#include <QList>
 #include "user.h"
+#include "computer.h"
+#include "keypress.h"
 
 class Server : public QObject {
   Q_OBJECT
@@ -15,6 +18,9 @@ public:
   bool ping();
   User* getUser(QString login, QString password);
   bool updateUser(User* user);
+  Computer* getComputer(User* user);
+  bool addKeyPress(KeyPress* keyPress);
+  QList<KeyPress*> getKeyPresses(User* user);
 
 private:
   QString _host;

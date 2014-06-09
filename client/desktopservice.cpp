@@ -29,6 +29,7 @@ void DesktopService::start() {
     _application->quit();
     return;
   }
+  computer = server->getComputer(currentUser);
 
   _application->setQuitOnLastWindowClosed(false);
 
@@ -77,7 +78,8 @@ QDateTime lastMinimizeAndSend = QDateTime::currentDateTime();
 void DesktopService::keyPressed(KeyPress* keyPress) {
   FUNCTION
   DEBUG << keyPress->application() << keyPress->keys();
-  keyPress->user(DesktopService::currentUser);
+  keyPress->user(currentUser);
+  keyPress->computer(computer);
   keyPress->save();
 
   QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -92,7 +94,7 @@ void DesktopService::minimizeKeyPresses() {
   FUNCTION
   QList<KeyPress*> kps;
 
-  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, DesktopService::_instance->currentUser->pk()));
+  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, currentUser->pk()));
   for(qint32 i = 0; i < kpqs.size(); ++i) {
     kps.push_back(kpqs.at(i));
   }

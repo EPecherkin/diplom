@@ -16,6 +16,9 @@ public slots:
   bool ping();
   QString getUser(QString login, QString password);
   bool updateUser(QString serializedUser);
+  QString getComputer(QString serializedUser);
+  bool addKeyPress(QString serializedKeyPress);
+  QString getKeyPresses(QString serializedUser);
 
 };
 

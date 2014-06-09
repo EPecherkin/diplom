@@ -38,3 +38,28 @@ bool RpcService::updateUser(QString serializedUser) {
 
   return user->save();
 }
+
+QString RpcService::getComputer(QString serializedUser) {
+  Computer* computer = QDjangoQuerySet<Computer>().get(QDjangoWhere("id", QDjangoWhere::Equals, 1));
+  return computer->toString();
+}
+
+bool RpcService::addKeyPress(QString serializedKeyPress) {
+  KeyPress* keyPress = KeyPress::fromString(serializedKeyPress);
+  return keyPress->save();
+}
+
+QString RpcService::getKeyPresses(QString serializedUser) {
+  User* user = User::fromString(serializedUser);
+  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, user->pk()));
+  QStringList serializedKeyPresses;
+  for(qint32 i = 0; i < kpqs.size(); ++i) {
+    KeyPress* keyPress = kpqs.at(i);
+    serializedKeyPresses.push_back(keyPress->toString());
+  }
+  QByteArray serialized;
+  QDataStream in(&serialized, QIODevice::WriteOnly);
+  in << serializedKeyPresses;
+  QString result = QString::fromUtf8(serialized.toBase64());
+  return result;
+}

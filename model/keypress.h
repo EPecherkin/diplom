@@ -8,10 +8,11 @@
 #include <QStringList>
 #include <QByteArray>
 #include "QDjangoModel.h"
+#include "serializablemodel.h"
 #include "user.h"
 #include "computer.h"
 
-class MODEL_EXPORT KeyPress : public QDjangoModel {
+class MODEL_EXPORT KeyPress : public QDjangoModel, public SerializableModel {
   Q_OBJECT
 
   Q_PROPERTY(User* user READ user WRITE user)
@@ -23,7 +24,6 @@ class MODEL_EXPORT KeyPress : public QDjangoModel {
   Q_PROPERTY(QByteArray ser_keys READ ser_keys WRITE ser_keys)
 
   Q_CLASSINFO("keys", "ignore_field=true")
-  Q_CLASSINFO("computer", "null=true")
 
 public:
   explicit KeyPress(QObject * parent = 0);
@@ -48,6 +48,9 @@ public:
 
   QByteArray ser_keys() const;
   void ser_keys(const QByteArray&);
+
+  virtual QString toString() const;
+  static KeyPress* fromString(const QString&);
 
 private:
   QString _application;

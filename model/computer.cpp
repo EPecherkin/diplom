@@ -26,3 +26,25 @@ QDateTime Computer::lastActivity() const {
 void Computer::lastActivity(const QDateTime& _lastActivity) {
   this->_lastActivity = _lastActivity;
 }
+
+QString Computer::toString() const {
+  QByteArray ba;
+  QDataStream ds(&ba, QIODevice::WriteOnly);
+  ds << pk() << property("user_id") << _ip << _lastActivity;
+  return QString::fromUtf8(ba.toBase64());
+}
+
+Computer* Computer::fromString(const QString& string) {
+  Computer* computer = new Computer;
+
+  QByteArray ba = QByteArray::fromBase64(string.toUtf8());
+  QDataStream ds(&ba, QIODevice::ReadOnly);
+
+  QVariant pk;
+  QVariant user_id;
+  ds >> pk >> user_id >> computer->_ip >> computer->_lastActivity;
+  computer->setPk(pk);
+  computer->setProperty("user_id", user_id);
+
+  return computer;
+}

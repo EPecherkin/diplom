@@ -14,7 +14,7 @@ DesktopService::DesktopService(QApplication* _application, QObject* parent) : QO
 void DesktopService::start() {
   FUNCTION
   if(!_storage->init() || !startRpcServer()) {
-    trayIconContextQuitPressed();
+    _application->quit();
     return;
   }
 

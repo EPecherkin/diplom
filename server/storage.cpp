@@ -94,6 +94,16 @@ bool Storage::addDefaultData() {
   }
   DEBUG << "success";
 
+  DEBUG << "Computer";
+  Computer c;
+  c.ip("127.0.0.1");
+  c.user(&au);
+  if(!c.save()) {
+     DEBUG << "fail";
+     return false;
+  }
+  DEBUG << "success";
+
   return true;
 }
 
@@ -112,6 +122,20 @@ bool Storage::addTestData() {
   ns.speed(10);
   ns.group(&sg);
   if(!ns.save()) {
+    DEBUG << "fail";
+    return false;
+  }
+  DEBUG << "success";
+
+  DEBUG << "Some user";
+  User su;
+  su.login("some");
+  su.firstName("some");
+  su.lastName("some");
+  su.middleName("some");
+  su.password("1234");
+  su.group(&sg);
+  if(!su.save()) {
     DEBUG << "fail";
     return false;
   }

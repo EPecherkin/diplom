@@ -17,7 +17,8 @@ public:
   static DesktopService* _instance;
 
   User* currentUser;
-  Server* _server;
+  Computer* computer;
+  Server* server;
 
   explicit DesktopService(QApplication* _application, QObject* parent = 0);
 

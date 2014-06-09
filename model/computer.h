@@ -6,9 +6,10 @@
 #include <QString>
 #include <QDateTime>
 #include "QDjangoModel.h"
+#include "serializablemodel.h"
 #include "user.h"
 
-class MODEL_EXPORT Computer : public QDjangoModel {
+class MODEL_EXPORT Computer : public QDjangoModel, public SerializableModel {
   Q_OBJECT
 
   Q_PROPERTY(User* user READ user WRITE user)
@@ -26,6 +27,9 @@ public:
 
   QDateTime lastActivity() const;
   void lastActivity(const QDateTime&);
+
+  virtual QString toString() const;
+  static Computer* fromString(const QString&);
 
 private:
   QString _ip;

@@ -41,8 +41,8 @@ void UserEditDialog::done(int r) {
     if(password.isEmpty())
       _user->password(password);
 
-    if(_user->save() && DesktopService::_instance->_server->ping()) {
-      DesktopService::_instance->_server->updateUser(_user);
+    if(_user->save() && DesktopService::_instance->server->ping()) {
+      DesktopService::_instance->server->updateUser(_user);
     }
   }
 
