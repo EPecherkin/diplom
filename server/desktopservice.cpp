@@ -11,12 +11,16 @@
 DesktopService::DesktopService(QApplication* _application, QObject* parent) : QObject(parent), _application(_application), _rpcServer(new QJsonRpcTcpServer), _storage(new Storage) {
 }
 
+void MyMessageOutput(QtMsgType Type, const QMessageLogContext& Context, const QString& Message);
+
 void DesktopService::start() {
   FUNCTION
   if(!_storage->init() || !startRpcServer()) {
     _application->quit();
     return;
   }
+
+  qInstallMessageHandler(MyMessageOutput);
 
   _application->setQuitOnLastWindowClosed(false);
 
@@ -67,4 +71,12 @@ bool DesktopService::startRpcServer() {
   }
   DEBUG << "started";
   return true;
+}
+
+void MyMessageOutput(QtMsgType Type, const QMessageLogContext& Context, const QString& Message) {
+  Log* log = new Log;
+  log->table(Message.split(";").at(0));
+  log->action(Message.split(";").at(1));
+  log->changes(Message.split(";").at(2));
+  log->save();
 }

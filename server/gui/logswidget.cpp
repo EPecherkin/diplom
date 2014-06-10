@@ -7,6 +7,8 @@
 
 LogsWidget::LogsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::LogsWidget) {
   ui->setupUi(this);
+
+  renderData();
 }
 
 LogsWidget::~LogsWidget() {

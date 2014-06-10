@@ -51,17 +51,17 @@
      </attribute>
      <column>
       <property name="text">
-       <string>Model</string>
+       <string>Data</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Action</string>
+       <string>Class</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Changes</string>
+       <string>Method</string>
       </property>
      </column>
     </widget>
