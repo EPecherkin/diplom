@@ -16,6 +16,7 @@ public:
   ~LoginDialog();
 
 private slots:
+  void renderData();
   virtual void done(int r);
 
 private:

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>648</width>
     <height>300</height>
    </rect>
   </property>
@@ -53,12 +53,27 @@
      </column>
      <column>
       <property name="text">
-       <string>Full name</string>
+       <string>First name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Last name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Middle name</string>
       </property>
      </column>
      <column>
       <property name="text">
        <string>Group</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Last activity</string>
       </property>
      </column>
     </widget>

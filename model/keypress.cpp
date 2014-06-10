@@ -1,6 +1,6 @@
 #include "keypress.h"
 
-KeyPress::KeyPress(QObject* parent) : QDjangoModel(parent), _application(""), _start(QDateTime::currentDateTime()), _duration(0) {
+KeyPress::KeyPress(QObject* parent) : QDjangoModel(parent), _application(""), _start(QDateTime::currentDateTime()), _duration(1) {
   keys(QStringList());
 }
 

@@ -2,9 +2,9 @@
 #include "ui_groupswidget.h"
 #include "QDjango.h"
 #include "QDjangoQuerySet.h"
+#include "macros.h"
 #include "user.h"
 #include "groupeditdialog.h"
-#include "macros.h"
 
 GroupsWidget::GroupsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GroupsWidget), _groups(QList<Group*>()) {
   ui->setupUi(this);
@@ -48,10 +48,13 @@ void GroupsWidget::renderData() {
     _groups.append(group);
 
     QTableWidgetItem* item0 = new QTableWidgetItem(group->name());
+    Normal* normal = QDjangoQuerySet<Normal>().get(QDjangoWhere("group_id", QDjangoWhere::Equals, group->pk()));
+    QTableWidgetItem* item1 = new QTableWidgetItem(QString::number(normal->speed()));
     qint32 userCount = QDjangoQuerySet<User>().filter(QDjangoWhere("group_id", QDjangoWhere::Equals, group->pk())).size();
-    QTableWidgetItem* item1 = new QTableWidgetItem(QString::number(userCount));
+    QTableWidgetItem* item2 = new QTableWidgetItem(QString::number(userCount));
 
     ui->groupsTW->setItem(i, 0, item0);
     ui->groupsTW->setItem(i, 1, item1);
+    ui->groupsTW->setItem(i, 2, item2);
   }
 }

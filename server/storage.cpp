@@ -17,8 +17,7 @@ bool Storage::init() {
   QDjango::setDatabase(db);
   DEBUG << "opened";
 
-//  return true;
-  return createTables() && addDefaultData() && addTestData();
+  return DB_INIT_RETURN;
 }
 
 template<class C> bool createTable() {

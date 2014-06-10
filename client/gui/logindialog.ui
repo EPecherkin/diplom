@@ -67,7 +67,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>3023</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="loginL">
@@ -106,7 +106,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>127.0.0.1</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="portL">
@@ -132,7 +132,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>admin</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="passwordLE">
@@ -145,7 +145,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1234</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="statusL">

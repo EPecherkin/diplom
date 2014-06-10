@@ -50,11 +50,13 @@ RESOURCES += \
 
 CONFIG(debug, debug|release): {
   DEFINES += DB_PATH=QString(\\\":memory:\\\")
+  DEFINES += DB_INIT_RETURN="\"createTables() && addDefaultData() && addTestData()\""
 #  win32:DEFINES += DB_PATH=QString(\\\"d:/archives/education/evm/evm_5/!diplom/keylogger_db/$$TARGET.sqlite3\\\")
 #  unix:DEFINES += DB_PATH=QString(\\\"/other/archives/education/evm/evm_5/!diplom/keylogger_db/$$TARGET.sqlite3\\\")
 }
 CONFIG(release, debug|release): {
   DEFINES += DB_PATH=QString(\\\"./$$TARGET.sqlite3\\\")
+  DEFINES += DB_INIT_RETURN=true
 }
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/qdjango/r/ -lqdjango-db0

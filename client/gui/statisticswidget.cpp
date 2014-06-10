@@ -43,10 +43,7 @@ void StatisticsWidget::renderData() {
   if(view == "All") {
     ui->groupByCB->setVisible(false);
     ui->statisticsTW->setColumnCount(5);
-    QStringList headers;
-    headers << "Computer" << "Application" << "Start" << "Duration" << "Keys";
-    ui->statisticsTW->setHorizontalHeaderLabels(headers);
-    ui->statisticsTW->setRowCount(kpqs.size());
+    ui->statisticsTW->setHorizontalHeaderLabels(QStringList() << "Computer" << "Application" << "Start" << "Duration" << "Keys");    ui->statisticsTW->setRowCount(kpqs.size());
     for(qint32 i = 0; i < kpqs.size(); ++i) {
       KeyPress* keyPress = kpqs.at(i);
       Computer* computer = QDjangoQuerySet<Computer>().get(QDjangoWhere("id", QDjangoWhere::Equals, keyPress->computer_id()));
@@ -65,9 +62,7 @@ void StatisticsWidget::renderData() {
   } else {
     ui->groupByCB->setVisible(true);
     ui->statisticsTW->setColumnCount(2);
-    QStringList headers;
-    headers << groupBy << "Total duration";
-    ui->statisticsTW->setHorizontalHeaderLabels(headers);
+    ui->statisticsTW->setHorizontalHeaderLabels(QStringList() << groupBy << "Total duration");
     QMap<QString, qint32> groups;
     for(qint32 i = 0; i < kpqs.size(); ++i) {
       KeyPress* keyPress = kpqs.at(i);

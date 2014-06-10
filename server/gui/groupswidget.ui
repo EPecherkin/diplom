@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
+    <width>409</width>
     <height>293</height>
    </rect>
   </property>
@@ -40,8 +40,14 @@
      <property name="cornerButtonEnabled">
       <bool>false</bool>
      </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>120</number>
+     </attribute>
      <attribute name="horizontalHeaderHighlightSections">
       <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>30</number>
      </attribute>
      <attribute name="verticalHeaderHighlightSections">
       <bool>false</bool>
@@ -53,7 +59,12 @@
      </column>
      <column>
       <property name="text">
-       <string>Count</string>
+       <string>Normal type speed</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Users count</string>
       </property>
      </column>
     </widget>

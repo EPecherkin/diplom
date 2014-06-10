@@ -84,7 +84,7 @@ void DesktopService::keyPressed(KeyPress* keyPress) {
   keyPress->save();
 
   QDateTime currentDateTime = QDateTime::currentDateTime();
-  if(lastMinimizeAndSend.secsTo(currentDateTime) > 5*60) {
+  if(lastMinimizeAndSend.secsTo(currentDateTime) > MINIMIZE_AND_SEND_INTERVAL) {
     minimizeKeyPresses();
     sendKeyPresses();
     lastMinimizeAndSend = currentDateTime;
@@ -110,14 +110,14 @@ void DesktopService::minimizeKeyPresses() {
 
     QDateTime start = kp->start();
     qint64 duration = kp->duration();
-    if(duration > 5*60) {
+    if(duration > MINIMIZE_AND_SEND_INTERVAL) {
       continue;
     }
 
     QDateTime startn = kpn->start();
     qint64 durationn = kpn->duration();
     qint64 secsTo = start.addSecs(duration).secsTo(startn);
-    if(secsTo > 1*60) {
+    if(secsTo > MINIMIZE_AND_SEND_INTERVAL/5) {
       continue;
     }
 
