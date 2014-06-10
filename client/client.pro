@@ -14,7 +14,8 @@ SOURCES  += \
     gui/computerswidget.cpp \
     gui/exportwidget.cpp \
     gui/statisticswidget.cpp \
-    gui/usereditdialog.cpp
+    gui/usereditdialog.cpp \
+    exporter.cpp
 HEADERS  += \
     desktopservice.h \
     keylogger.h \
@@ -26,7 +27,8 @@ HEADERS  += \
     gui/computerswidget.h \
     gui/exportwidget.h \
     gui/statisticswidget.h \
-    gui/usereditdialog.h
+    gui/usereditdialog.h \
+    exporter.h
 FORMS    += \
     gui/logindialog.ui \
     gui/mainwindow.ui \

@@ -2,6 +2,7 @@
 #define EXPORTWIDGET_H
 
 #include <QWidget>
+#include "user.h"
 
 namespace Ui {
 class ExportWidget;
@@ -11,7 +12,7 @@ class ExportWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ExportWidget(QWidget* parent = 0);
+  explicit ExportWidget(User* user, QWidget* parent = 0);
   ~ExportWidget();
 
 private slots:
@@ -19,6 +20,7 @@ private slots:
 
 private:
   Ui::ExportWidget* ui;
+  User* _user;
 
 };
 

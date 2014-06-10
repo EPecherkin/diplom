@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>235</width>
-    <height>274</height>
+    <width>206</width>
+    <height>221</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>206</width>
+    <height>221</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>206</width>
+    <height>221</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>

@@ -12,8 +12,11 @@ class ComputersWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ComputersWidget(User* user = 0, QWidget* parent = 0);
+  explicit ComputersWidget(User* user, QWidget* parent = 0);
   ~ComputersWidget();
+
+private slots:
+  void renderData();
 
 private:
   Ui::ComputersWidget* ui;
