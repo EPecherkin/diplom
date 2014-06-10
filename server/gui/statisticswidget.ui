@@ -6,119 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>469</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="exportPB">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>260</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Export</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="statisticsTW">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>381</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
-   </property>
-   <property name="tabKeyNavigation">
-    <bool>false</bool>
-   </property>
-   <property name="showDropIndicator" stdset="0">
-    <bool>false</bool>
-   </property>
-   <property name="dragDropOverwriteMode">
-    <bool>false</bool>
-   </property>
-   <property name="selectionMode">
-    <enum>QAbstractItemView::SingleSelection</enum>
-   </property>
-   <property name="selectionBehavior">
-    <enum>QAbstractItemView::SelectRows</enum>
-   </property>
-   <property name="sortingEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="cornerButtonEnabled">
-    <bool>false</bool>
-   </property>
-   <attribute name="horizontalHeaderHighlightSections">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderHighlightSections">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QLabel" name="viewL">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>46</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>View</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="viewCB">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>69</width>
-     <height>22</height>
-    </rect>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <property name="text">
-     <string>All</string>
-    </property>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>262</width>
+       <height>95</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>260</width>
+       <height>95</height>
+      </size>
+     </property>
+     <widget class="QDateTimeEdit" name="fromDTE">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>20</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="groupByCB">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>70</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Computer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Application</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="toL">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>0</y>
+        <width>46</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>To</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="viewCB">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>70</y>
+        <width>69</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>All</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Group by</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QDateTimeEdit" name="toDTE">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fromL">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>0</y>
+        <width>46</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>From</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="viewL">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>50</y>
+        <width>46</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>View</string>
+      </property>
+     </widget>
+    </widget>
    </item>
    <item>
-    <property name="text">
-     <string>Group by</string>
-    </property>
+    <widget class="QTableWidget" name="statisticsTW">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="tabKeyNavigation">
+      <bool>false</bool>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+    </widget>
    </item>
-  </widget>
-  <widget class="QComboBox" name="groupByCB">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>30</y>
-     <width>91</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Computer</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Application</string>
-    </property>
-   </item>
-  </widget>
+  </layout>
  </widget>
  <resources/>
  <connections/>

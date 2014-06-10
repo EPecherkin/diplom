@@ -18,8 +18,6 @@ public:
 private slots:
   void renderData();
 
-  void on_exportPB_clicked();
-
 private:
   Ui::StatisticsWidget* ui;
   User* _user;

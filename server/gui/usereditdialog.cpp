@@ -5,6 +5,7 @@
 #include "macros.h"
 #include "computerswidget.h"
 #include "statisticswidget.h"
+#include "exportwidget.h"
 
 UserEditDialog::UserEditDialog(User* user, QWidget* parent) : QDialog(parent), ui(new Ui::UserEditDialog), _user(user), _groups(QList<Group*>()) {
   ui->setupUi(this);
@@ -26,6 +27,12 @@ void UserEditDialog::on_statisticsPB_clicked() {
   FUNCTION
   StatisticsWidget* sw = new StatisticsWidget(_user);
   sw->show();
+}
+
+void UserEditDialog::on_exportDataPB_clicked() {
+  FUNCTION
+  ExportWidget* ew = new ExportWidget(_user);
+  ew->show();
 }
 
 void UserEditDialog::done(int r) {
@@ -52,6 +59,7 @@ void UserEditDialog::renderData() {
   FUNCTION
   ui->computersPB->setVisible(_user->pk().isValid());
   ui->statisticsPB->setVisible(_user->pk().isValid());
+  ui->exportDataPB->setVisible(_user->pk().isValid());
 
   ui->loginLE->setText(_user->login());
   ui->firstNameLE->setText(_user->firstName());

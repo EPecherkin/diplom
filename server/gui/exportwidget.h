@@ -16,6 +16,7 @@ public:
   ~ExportWidget();
 
 private slots:
+  void on_pathToFilePB_clicked();
   void on_exportPB_clicked();
 
 private:

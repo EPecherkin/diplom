@@ -1,8 +1,8 @@
 #include "userswidget.h"
 #include "ui_userswidget.h"
-#include "macros.h"
 #include "QDjango.h"
 #include "QDjangoQuerySet.h"
+#include "macros.h"
 #include "usereditdialog.h"
 
 UsersWidget::UsersWidget(Group* group, QWidget* parent) : QWidget(parent), ui(new Ui::UsersWidget), _group(group), _users(QList<User*>()) {

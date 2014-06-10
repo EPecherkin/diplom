@@ -14,36 +14,70 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QPushButton" name="usersPB">
-      <property name="text">
-       <string>Users</string>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>25</height>
+       </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>25</height>
+       </size>
+      </property>
+      <widget class="QPushButton" name="logsPB">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>0</y>
+         <width>60</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Logs</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="usersPB">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>0</y>
+         <width>60</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Users</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="groupsPB">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>60</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Groups</string>
+       </property>
+      </widget>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QPushButton" name="groupsPB">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Groups</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="logsPB">
-      <property name="text">
-       <string>Logs</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="3">
-     <widget class="QWidget" name="widget" native="true"/>
+    <item>
+     <widget class="QWidget" name="widget_2" native="true"/>
     </item>
    </layout>
   </widget>

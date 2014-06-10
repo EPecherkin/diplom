@@ -22,6 +22,7 @@ private slots:
 
   void on_computersPB_clicked();
   void on_statisticsPB_clicked();
+  void on_exportDataPB_clicked();
   virtual void done(int r);
 
 private:
