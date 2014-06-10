@@ -31,7 +31,8 @@ void StatisticsWidget::renderData() {
   QDateTime fromDT = ui->fromDTE->dateTime();
   QDateTime toDT = ui->toDTE->dateTime();
 
-  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("start", QDjangoWhere::GreaterOrEquals, fromDT)
+  QDjangoQuerySet<KeyPress> kpqs = QDjangoQuerySet<KeyPress>().filter(QDjangoWhere("user_id", QDjangoWhere::Equals, _user->pk())
+                                                                      && QDjangoWhere("start", QDjangoWhere::GreaterOrEquals, fromDT)
                                                                       && QDjangoWhere("start", QDjangoWhere::LessOrEquals, toDT));
   if(view == "All") {
     ui->groupByCB->setVisible(false);

@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>291</width>
-    <height>189</height>
+    <height>120</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>291</width>
-    <height>189</height>
+    <height>120</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>291</width>
-    <height>189</height>
+    <height>120</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -116,43 +116,14 @@
   <widget class="QPushButton" name="exportPB">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>160</y>
+     <x>150</x>
+     <y>90</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>Export</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pathToFilePB">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>130</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Path to file</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="pathToFileLE">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>191</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
    </property>
   </widget>
  </widget>

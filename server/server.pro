@@ -17,7 +17,8 @@ SOURCES += \
     gui/statisticswidget.cpp \
     gui/usereditdialog.cpp \
     gui/userswidget.cpp \
-    storage.cpp
+    storage.cpp \
+    exporter.cpp
 HEADERS += \
     macros.h \
     desktopservice.h \
@@ -31,7 +32,8 @@ HEADERS += \
     gui/statisticswidget.h \
     gui/usereditdialog.h \
     gui/userswidget.h \
-    storage.h
+    storage.h \
+    exporter.h
 FORMS += \
     gui/computerswidget.ui \
     gui/exportwidget.ui \
