@@ -145,4 +145,13 @@ void DesktopService::sendKeyPresses() {
   for(qint32 i = 0; i < kpqs.size(); ++i) {
     kps.push_back(kpqs.at(i));
   }
+
+  for(qint32 i = 0; i < kps.size(); ++i) {
+    KeyPress* keyPress = kps.at(i);
+    if(server->addKeyPress(keyPress)) {
+      keyPress->remove();
+      kps.removeAt(i);
+      --i;
+    }
+  }
 }
